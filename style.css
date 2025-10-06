@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #1a0033, #0b001a);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #7a00ff, #c000ff, #7a00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(160, 0, 255, 0.6);
+}
+
+.author {
+    color: #aaa;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+.demon-list {
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(160, 0, 255, 0.3);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(70%);
+    transition: 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+    filter: brightness(100%);
+}
+
+.info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(40, 0, 80, 0.7);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 15px;
+    transition: 0.3s ease;
+}
+
+.card:hover .info {
+    background: rgba(140, 0, 255, 0.6);
+}
+
+.info h2 {
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 0 0 10px #a000ff;
+}
+
+footer {
+    margin: 40px 0 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Special glow for top 3 */
+.top1 {
+    box-shadow: 0 0 25px #ff00ff, 0 0 50px #a000ff;
+}
+.top2 {
+    box-shadow: 0 0 25px #9a00ff, 0 0 40px #6a00ff;
+}
+.top3 {
+    box-shadow: 0 0 25px #6a00ff, 0 0 30px #4600ff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .info h2 {
+        font-size: 1rem;
+    }
+}
