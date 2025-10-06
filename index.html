@@ -1,87 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALSO GDPS Demon List</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALSO GDPS Demon List</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>ALSO GDPS Demon List</h1>
-        <p class="author">by PERFARATARRRRRR</p>
-    </header>
+  <header>
+    <h1>ALSO GDPS Demon List</h1>
+    <p class="author">by PERFARATARRRRRR</p>
+  </header>
 
-    <main class="demon-list">
-        <div class="card" data-id="312" data-author="MWMWM" data-length="2:15 (XL)" data-title="SCITZOPHRENIA">
-            <img src="scitzophrenia.jpg" alt="SCITZOPHRENIA">
-            <div class="info"><h2>#1 SCITZOPHRENIA</h2></div>
-        </div>
-
-        <div class="card" data-id="254" data-author="PERFARATARRRRRR" data-length="3:19 (XL)" data-title="SEEK & DESTROY">
-            <img src="seek_and_destroy.jpg" alt="SEEK & DESTROY">
-            <div class="info"><h2>#2 SEEK & DESTROY</h2></div>
-        </div>
-
-        <div class="card" data-id="211" data-author="EvenTencid" data-length="1:00 (Long)" data-title="ACFACTORY">
-            <img src="acfactory.jpg" alt="ACFACTORY">
-            <div class="info"><h2>#3 ACFACTORY</h2></div>
-        </div>
-
-        <div class="card" data-id="147" data-author="KosmosTT" data-length="0:36 (Medium)" data-title="MAYMORY">
-            <img src="maymory.jpg" alt="MAYMORY">
-            <div class="info"><h2>#4 MAYMORY</h2></div>
-        </div>
-
-        <div class="card" data-id="279" data-author="kirill0gd" data-length="1:39 (Long)" data-title="BLOODBATH">
-            <img src="bloodbath.jpg" alt="BLOODBATH">
-            <div class="info"><h2>#5 BLOODBATH</h2></div>
-        </div>
-
-        <div class="card" data-id="168" data-author="KosmosTT" data-length="0:33 (Medium)" data-title="LAVA BOUNCE">
-            <img src="lava_bounce.jpg" alt="LAVA BOUNCE">
-            <div class="info"><h2>#6 LAVA BOUNCE</h2></div>
-        </div>
-    </main>
-
-    <footer>
-        <p>© 2025 ALSO GDPS • Designed by PERFARATARRRRRR</p>
-    </footer>
-
-    <!-- Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span id="close">&times;</span>
-            <h2 id="modal-title"></h2>
-            <p><strong>ID:</strong> <span id="modal-id"></span></p>
-            <p><strong>Author:</strong> <span id="modal-author"></span></p>
-            <p><strong>Length:</strong> <span id="modal-length"></span></p>
-        </div>
+  <main class="demon-list">
+    <div class="card top1" data-id="312" data-author="MWMWM"
+      data-length="26 s (Short), bugged → 2:15 (XL)" data-title="SCITZOPHRENIA">
+      <img src="scitzophrenia.jpg" alt="SCITZOPHRENIA" />
+      <div class="info"><h2>#1 SCITZOPHRENIA</h2></div>
     </div>
 
-    <script>
-        const cards = document.querySelectorAll('.card');
-        const modal = document.getElementById('modal');
-        const closeBtn = document.getElementById('close');
-        const title = document.getElementById('modal-title');
-        const id = document.getElementById('modal-id');
-        const author = document.getElementById('modal-author');
-        const length = document.getElementById('modal-length');
+    <div class="card top2" data-id="254" data-author="PERFARATARRRRRR"
+      data-length="3:19 (XL)" data-title="SEEK & DESTROY">
+      <img src="seek_and_destroy.jpg" alt="SEEK & DESTROY" />
+      <div class="info"><h2>#2 SEEK & DESTROY</h2></div>
+    </div>
 
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                title.textContent = card.dataset.title;
-                id.textContent = card.dataset.id;
-                author.textContent = card.dataset.author;
-                length.textContent = card.dataset.length;
-                modal.classList.add('show');
-            });
-        });
+    <div class="card top3" data-id="211" data-author="EvenTencid"
+      data-length="1:00 (Long)" data-title="ACFACTORY">
+      <img src="acfactory.jpg" alt="ACFACTORY" />
+      <div class="info"><h2>#3 ACFACTORY</h2></div>
+    </div>
 
-        closeBtn.addEventListener('click', () => modal.classList.remove('show'));
-        modal.addEventListener('click', e => {
-            if (e.target === modal) modal.classList.remove('show');
-        });
-    </script>
+    <div class="card" data-id="147" data-author="KosmosTT"
+      data-length="0:36 (Medium)" data-title="MAYMORY">
+      <img src="maymory.jpg" alt="MAYMORY" />
+      <div class="info"><h2>#4 MAYMORY</h2></div>
+    </div>
+
+    <div class="card" data-id="279" data-author="kirill0gd"
+      data-length="1:39 (Long)" data-title="BLOODBATH">
+      <img src="bloodbath.jpg" alt="BLOODBATH" />
+      <div class="info"><h2>#5 BLOODBATH</h2></div>
+    </div>
+
+    <div class="card" data-id="168" data-author="KosmosTT"
+      data-length="0:33 (Medium)" data-title="LAVA BOUNCE">
+      <img src="lava_bounce.jpg" alt="LAVA BOUNCE" />
+      <div class="info"><h2>#6 LAVA BOUNCE</h2></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 ALSO GDPS • Designed by PERFARATARRRRRR</p>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="close">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p><strong>ID:</strong> <span id="modal-id"></span></p>
+      <button id="copy-btn">Copy ID</button>
+      <p><strong>Author:</strong> <span id="modal-author"></span></p>
+      <p><strong>Length:</strong> <span id="modal-length"></span></p>
+      <p id="copied-msg">Copied!</p>
+    </div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll(".card");
+    const modal = document.getElementById("modal");
+    const closeBtn = document.getElementById("close");
+    const title = document.getElementById("modal-title");
+    const id = document.getElementById("modal-id");
+    const author = document.getElementById("modal-author");
+    const length = document.getElementById("modal-length");
+    const copyBtn = document.getElementById("copy-btn");
+    const copiedMsg = document.getElementById("copied-msg");
+
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        title.textContent = card.dataset.title;
+        id.textContent = card.dataset.id;
+        author.textContent = card.dataset.author;
+        length.textContent = card.dataset.length;
+        modal.classList.add("show");
+      });
+    });
+
+    closeBtn.addEventListener("click", () => modal.classList.remove("show"));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("show");
+    });
+
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(id.textContent);
+      copiedMsg.classList.add("visible");
+      setTimeout(() => copiedMsg.classList.remove("visible"), 1000);
+    });
+  </script>
 </body>
 </html>
