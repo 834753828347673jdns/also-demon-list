@@ -9,12 +9,20 @@
 <body>
   <header>
     <h1>ALSO GDPS Demon List</h1>
-    <p class="author">by PERFARATARRRRRR</p>
+    <p class="author">
+      Created by <span class="highlight">KosmosTT</span> • Designed by <span class="highlight">PERFARATARRRRRR</span>
+    </p>
+    <nav>
+      <button class="tab active" data-target="main-list">Main List</button>
+      <button class="tab" data-target="impossible-list">Impossible List</button>
+      <button class="tab" data-target="unverified-list">Unverified</button>
+    </nav>
   </header>
 
-  <main class="demon-list">
+  <!-- === MAIN LIST === -->
+  <main id="main-list" class="demon-list active">
     <div class="card top1" data-id="312" data-author="MWMWM"
-      data-length="26 s (Short), bugged → 2:15 (XL)" data-title="SCITZOPHRENIA">
+      data-length="26 s (actual), bugged → 2:15 (XL)" data-title="SCITZOPHRENIA">
       <img src="scitzophrenia.jpg" alt="SCITZOPHRENIA" />
       <div class="info"><h2>#1 SCITZOPHRENIA</h2></div>
     </div>
@@ -50,11 +58,25 @@
     </div>
   </main>
 
+  <!-- === IMPOSSIBLE LIST === -->
+  <main id="impossible-list" class="demon-list">
+    <p class="placeholder">⚠️ No impossible levels yet. Waiting for KosmosTT.</p>
+  </main>
+
+  <!-- === UNVERIFIED / IN PROGRESS === -->
+  <main id="unverified-list" class="demon-list">
+    <div class="card" data-id="?" data-author="PERFARATARRRRRR"
+      data-length="Unknown" data-title="LITHIUM (in progress)">
+      <img src="lithium.jpg" alt="LITHIUM" />
+      <div class="info"><h2>LITHIUM (In Progress)</h2></div>
+    </div>
+  </main>
+
   <footer>
-    <p>© 2025 ALSO GDPS • Designed by PERFARATARRRRRR</p>
+    <p>© 2025 ALSO GDPS • Created by KosmosTT • Designed by PERFARATARRRRRR</p>
   </footer>
 
-  <!-- Modal -->
+  <!-- === Modal === -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span id="close">&times;</span>
@@ -68,6 +90,19 @@
   </div>
 
   <script>
+    // === TABS ===
+    const tabs = document.querySelectorAll(".tab");
+    const lists = document.querySelectorAll(".demon-list");
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        lists.forEach(l => l.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.target).classList.add("active");
+      });
+    });
+
+    // === MODAL ===
     const cards = document.querySelectorAll(".card");
     const modal = document.getElementById("modal");
     const closeBtn = document.getElementById("close");
@@ -78,7 +113,7 @@
     const copyBtn = document.getElementById("copy-btn");
     const copiedMsg = document.getElementById("copied-msg");
 
-    cards.forEach((card) => {
+    cards.forEach(card => {
       card.addEventListener("click", () => {
         title.textContent = card.dataset.title;
         id.textContent = card.dataset.id;
@@ -89,7 +124,7 @@
     });
 
     closeBtn.addEventListener("click", () => modal.classList.remove("show"));
-    modal.addEventListener("click", (e) => {
+    modal.addEventListener("click", e => {
       if (e.target === modal) modal.classList.remove("show");
     });
 
