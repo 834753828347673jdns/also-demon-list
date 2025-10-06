@@ -1,0 +1,534 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* --- Основной стиль (Demon List) --- */
+body {
+  /* Градиент по умолчанию (фиолетовый/неон) */
+  background: radial-gradient(circle at top, #1a0033, #0b001a);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.5s ease; /* Плавный переход фона */
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-top: 40px;
+  width: 90%;
+  max-width: 1200px;
+  position: relative; /* Для позиционирования гамбургера */
+}
+
+h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #7a00ff, #c000ff, #7a00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(160, 0, 255, 0.6);
+  animation: glow 4s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #7a00ff; }
+  to { text-shadow: 0 0 25px #c000ff, 0 0 40px #7a00ff; }
+}
+
+.author {
+  color: #aaa;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.highlight {
+  color: #c000ff;
+  text-shadow: 0 0 10px #7a00ff;
+  font-weight: 600;
+}
+
+/* --- HAMBURGER BUTTON (НОВАЯ ПОЗИЦИЯ: СЛЕВА) --- */
+.hamburger {
+    position: absolute;
+    top: 5px; 
+    left: 0; 
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 20; 
+    transition: top 0.3s;
+}
+.bar {
+    width: 100%;
+    height: 3px;
+    /* ЦВЕТ УСТАНАВЛИВАЕТСЯ ЧЕРЕЗ JS */
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s; 
+}
+
+/* Поднимаем Гамбургер на телефонах (меньше 600px) */
+@media (max-width: 600px) {
+    .hamburger {
+        top: -15px; 
+    }
+}
+
+
+/* --- SIDEBAR MENU --- */
+.sidebar {
+    height: 100%;
+    width: 0; /* Изначально скрыто */
+    position: fixed;
+    z-index: 15;
+    top: 0;
+    left: 0;
+    background: rgba(10, 0, 20, 0.95); 
+    backdrop-filter: blur(10px);
+    overflow-x: hidden;
+    transition: 0.5s;
+    /* ФИОЛЕТОВЫЙ ПО УМОЛЧАНИЮ */
+    box-shadow: 5px 0 25px rgba(122, 0, 255, 0.5); 
+}
+
+.sidebar.open {
+    width: 280px; /* Ширина открытого меню */
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.close-btn:hover {
+    color: #c000ff;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.menu-title {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #7a00ff;
+    border-bottom: 2px solid rgba(122, 0, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+/* Стили для кнопок в боковом меню */
+.sidebar-button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    text-align: left;
+    padding: 15px 20px;
+    background: none;
+    border: 2px solid #7a00ff;
+    color: #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: none; 
+}
+.sidebar-button:hover {
+    background: linear-gradient(90deg, #7a00ff, #c000ff);
+    box-shadow: 0 0 10px #a000ff;
+}
+
+/* СПЕЦИАЛЬНЫЙ СТИЛЬ ДЛЯ NEWS (СИНИЙ ФОН ПО УМОЛЧАНИЮ) */
+.sidebar-button[data-tab="news"] {
+    background: linear-gradient(90deg, #0044ff, #0088ff);
+    border-color: #0044ff;
+    box-shadow: 0 0 20px rgba(0, 68, 255, 0.6);
+}
+.sidebar-button[data-tab="news"].active,
+.sidebar-button[data-tab="news"]:hover {
+    background: linear-gradient(90deg, #0088ff, #0044ff);
+    box-shadow: 0 0 30px #0044ff;
+}
+
+/* Navigation Tabs (Основная навигация) */
+nav {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px;
+  justify-content: center; 
+}
+
+.tab-button {
+  background: none;
+  border: 2px solid #7a00ff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab-button.active, .tab-button:hover {
+  background: linear-gradient(90deg, #7a00ff, #c000ff);
+  box-shadow: 0 0 20px #a000ff;
+}
+
+/* Content Structure Fix */
+.tab-content {
+  display: none;
+  margin: 50px auto;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.tab-content.active {
+  display: block; 
+}
+
+/* Только Demon List и In Progress используют grid-разметку */
+.demon-list.active,
+.in-progress.active {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.soon {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 60px;
+  color: #888;
+}
+
+/* Cards */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+  transition: 0.4s ease;
+}
+.card:hover img {
+  transform: scale(1.1);
+  filter: brightness(100%);
+}
+.info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(40, 0, 80, 0.7);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  padding: 15px;
+}
+.info h2 {
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: 0 0 10px #a000ff;
+}
+
+/* --- ОБНОВЛЕННЫЕ СВЕЧЕНИЯ ТОР-3 --- */
+
+/* Топ 1: Максимальное свечение (Розово-фиолетовый) */
+.top1 { 
+    box-shadow: 0 0 25px #ff00ff, 0 0 60px #ff66ff, inset 0 0 30px #a000ff; 
+    animation: pulse1 3s infinite alternate; 
+}
+
+/* Топ 2: Более сильное свечение (Ярко-фиолетовый) */
+.top2 { 
+    box-shadow: 0 0 30px #9900ff, 0 0 70px #cc00ff, inset 0 0 25px #6600ff; 
+    animation: pulse2 3s infinite alternate; 
+}
+
+/* Топ 3: Немного ослабленное свечение (Голубой/Светло-фиолетовый) */
+.top3 { 
+    box-shadow: 0 0 15px #3300ff, 0 0 40px #66ccff, inset 0 0 10px #6600ff; 
+    animation: pulse3 3s infinite alternate; 
+}
+
+/* Анимации */
+@keyframes pulse1 { 
+    from { box-shadow: 0 0 20px #ff33ff; } 
+    to { box-shadow: 0 0 80px #ff00ff; } 
+}
+@keyframes pulse2 { 
+    from { box-shadow: 0 0 25px #9900ff; } 
+    to { box-shadow: 0 0 90px #cc00ff; } 
+}
+@keyframes pulse3 { 
+    from { box-shadow: 0 0 10px #3300ff; } 
+    to { box-shadow: 0 0 50px #66ccff; } 
+}
+
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show { display: flex; }
+
+.modal-content {
+  background: linear-gradient(145deg, #250040, #1a0033);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #a000ff;
+  text-align: center;
+  position: relative;
+  animation: popIn 0.3s ease forwards;
+}
+
+#close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#close:hover { color: #a000ff; }
+
+.modal-content h2 {
+  color: #c000ff;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px #a000ff;
+}
+
+.modal-content p {
+  color: #ddd;
+  margin: 8px 0;
+}
+
+/* Copy button */
+#copy-btn {
+  margin-top: 10px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #7a00ff, #c000ff);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#copy-btn:hover {
+  background: linear-gradient(90deg, #c000ff, #7a00ff);
+  box-shadow: 0 0 20px #a000ff;
+}
+
+#copied-msg {
+  opacity: 0;
+  color: #a000ff;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  transition: opacity 0.3s ease;
+}
+
+#copied-msg.visible { opacity: 1; }
+
+footer {
+  margin: 40px 0 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+/* ======================================= */
+/* --- Стили для Вкладки News --- */
+/* ======================================= */
+
+.tab-content.news h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px #a000ff;
+}
+
+.update-entry {
+    background: linear-gradient(145deg, #250040, #1a0033);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(122, 0, 255, 0.4);
+    border-left: 5px solid #c000ff;
+}
+
+.update-entry h3 {
+    color: #c000ff;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgba(192, 0, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.update-entry ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.update-entry ul li {
+    padding: 5px 0;
+    color: #ddd;
+}
+
+
+/* ======================================= */
+/* --- ДИНАМИЧЕСКИЕ РЕЖИМЫ --- */
+/* ======================================= */
+
+/* --- Стили для IMPOSSIBLE LIST (Красный/Кровь) --- */
+body.impossible-mode {
+    /* Фон становится красно-черным */
+    background: radial-gradient(circle at top, #330000, #1a0000);
+}
+
+/* Красные акценты */
+body.impossible-mode h1,
+body.impossible-mode .highlight,
+body.impossible-mode .tab-button.active, 
+body.impossible-mode .tab-button:hover,
+body.impossible-mode .modal-content h2,
+body.impossible-mode .menu-title { /* АКТИВИРУЕМ МЕНЮ-ЗАГОЛОВОК */
+    /* Новый красноватый градиент для текста и акцентов */
+    background: linear-gradient(90deg, #ff0000, #ff6666, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    border-color: rgba(255, 0, 0, 0.3); /* Обновляем разделитель */
+}
+
+body.impossible-mode .tab-button {
+    border: 2px solid #ff0000;
+}
+/* КРАСНЫЕ СТИЛИ ДЛЯ SIDEBAR */
+body.impossible-mode .sidebar {
+    background: rgba(20, 0, 0, 0.95); /* Темно-красный фон */
+    box-shadow: 5px 0 25px rgba(255, 0, 0, 0.5); /* Красное свечение */
+}
+/* КРАСНЫЕ СТИЛИ ДЛЯ КНОПКИ NEWS ВНУТРИ SIDEBAR */
+body.impossible-mode .sidebar-button[data-tab="news"] {
+    background: linear-gradient(90deg, #880000, #ff0000); /* Красный градиент */
+    border-color: #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+}
+body.impossible-mode .sidebar-button[data-tab="news"].active,
+body.impossible-mode .sidebar-button[data-tab="news"]:hover {
+    background: linear-gradient(90deg, #ff0000, #880000);
+    box-shadow: 0 0 30px #ff0000;
+}
+
+/* Красная кнопка копирования */
+body.impossible-mode #copy-btn {
+    background: linear-gradient(90deg, #ff0000, #ff6666);
+    box-shadow: none;
+}
+body.impossible-mode #copy-btn:hover {
+    background: linear-gradient(90deg, #ff6666, #ff0000);
+    box-shadow: 0 0 20px #ff0000;
+}
+body.impossible-mode #copied-msg {
+    color: #ff0000;
+}
+
+/* --- Стили для IN PROGRESS (Серый/Сырой) --- */
+body.progress-mode {
+    /* Фон становится серо-черным */
+    background: radial-gradient(circle at top, #2b2b2b, #151515);
+}
+
+/* Серые/желтые акценты */
+body.progress-mode h1,
+body.progress-mode .highlight,
+body.progress-mode .tab-button.active, 
+body.progress-mode .tab-button:hover,
+body.progress-mode .modal-content h2,
+body.progress-mode .menu-title { /* АКТИВИРУЕМ МЕНЮ-ЗАГОЛОВОК */
+    /* Серый градиент */
+    background: linear-gradient(90deg, #b0b0b0, #ffffff, #b0b0b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
+    border-color: rgba(176, 176, 176, 0.3); /* Обновляем разделитель */
+}
+
+body.progress-mode .tab-button {
+    border: 2px solid #b0b0b0;
+}
+/* СЕРЫЕ СТИЛИ ДЛЯ SIDEBAR */
+body.progress-mode .sidebar {
+    background: rgba(20, 20, 20, 0.95); /* Темно-серый фон */
+    box-shadow: 5px 0 25px rgba(176, 176, 176, 0.5); /* Серое свечение */
+}
+/* СЕРЫЕ СТИЛИ ДЛЯ КНОПКИ NEWS ВНУТРИ SIDEBAR */
+body.progress-mode .sidebar-button[data-tab="news"] {
+    background: linear-gradient(90deg, #555555, #b0b0b0); /* Серый градиент */
+    border-color: #b0b0b0;
+    box-shadow: 0 0 20px rgba(176, 176, 176, 0.6);
+}
+body.progress-mode .sidebar-button[data-tab="news"].active,
+body.progress-mode .sidebar-button[data-tab="news"]:hover {
+    background: linear-gradient(90deg, #b0b0b0, #555555);
+    box-shadow: 0 0 30px #b0b0b0;
+}
+
+
+/* Серая кнопка копирования */
+body.progress-mode #copy-btn {
+    background: linear-gradient(90deg, #b0b0b0, #ffffff);
+}
+body.progress-mode #copy-btn:hover {
+    background: linear-gradient(90deg, #ffffff, #b0b0b0);
+    box-shadow: 0 0 20px #b0b0b0;
+}
+body.progress-mode #copied-msg {
+    color: #b0b0b0;
+}
