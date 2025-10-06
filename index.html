@@ -7,18 +7,34 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  
+  <div id="sidebar" class="sidebar">
+    <button class="close-btn" id="close-sidebar">&times;</button>
+    <div class="sidebar-content">
+        <h3 class="menu-title">Menu</h3>
+        <button class="tab-button sidebar-button" data-tab="news">
+            <span class="highlight-icon">📰</span> News
+        </button>
+        </div>
+  </div>
+
   <header>
     <h1>ALSO GDPS Demon List</h1>
     <p class="author">Created by <span class="highlight">KosmosTT</span> • Designed by <span class="highlight">PERFARATARRRRRR</span></p>
+    
+    <button class="hamburger" id="open-sidebar">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
   </header>
 
   <nav>
     <button class="tab-button active" data-tab="demon-list">Demon List</button>
-    <button class="tab-button" data-tab="in-progress">In Progress / Unverified</button>
     <button class="tab-button" data-tab="impossible">Impossible List</button>
+    <button class="tab-button" data-tab="in-progress">In Progress / Unverified</button>
   </nav>
 
-  <!-- DEMON LIST -->
   <main class="tab-content demon-list active">
     <div class="card top1" data-id="312" data-author="MWMWM" data-length="26 s (actual), bugged → 2:15 (XL)" data-title="SCITZOPHRENIA">
       <img src="scitzophrenia.jpg" alt="SCITZOPHRENIA" />
@@ -51,24 +67,56 @@
     </div>
   </main>
 
-  <!-- IN PROGRESS -->
   <main class="tab-content in-progress">
+    
     <div class="card" data-id="—" data-author="PERFARATARRRRRR" data-length="Unknown" data-title="LITHIUM">
       <img src="lithium.jpg" alt="LITHIUM" />
       <div class="info"><h2>LITHIUM (In Progress)</h2></div>
     </div>
+
+    <div class="card" data-id="—" data-author="Burda5800gd" data-length="1:07 (Long)" data-title="ALSO ANATHEMA">
+      <img src="also anathema.jpg" alt="ALSO ANATHEMA" />
+      <div class="info"><h2>ALSO ANATHEMA (In Progress)</h2></div>
+    </div>
+    
+    <div class="card" data-id="—" data-author="Vasekk Hardy" data-length="Unknown" data-title="DEPRESSION">
+      <img src="depression.jpg" alt="DEPRESSION" />
+      <div class="info"><h2>DEPRESSION (In Progress)</h2></div>
+    </div>
+
+    <div class="card" data-id="—" data-author="Depperens" data-length="Unknown" data-title="XPEH 3HAET">
+      <img src="xpeh3haet.jpg" alt="XPEH 3HAET" />
+      <div class="info"><h2>XPEH 3HAET (In Progress)</h2></div>
+    </div>
+    
   </main>
 
-  <!-- IMPOSSIBLE LIST -->
   <main class="tab-content impossible">
     <p class="soon">⚙️ Soon by <span class="highlight">KosmosTT</span>...</p>
+  </main>
+
+  <main class="tab-content news">
+    <h2>News & Updates</h2>
+    <div class="update-entry">
+      <h3>[06.10.2025] Запуск сайта и новые режимы!</h3>
+      <p>Официальный запуск ALSO GDPS Demon List!</p>
+      <ul>
+        <li>**Дизайн:** Внедрен неоновый стиль PERFARATARRRRRR на базе шрифта Orbitron.</li>
+        <li>**Новый функционал:** Добавлены динамические режимы фона для Impossible List (Красный) и In Progress (Серый).</li>
+        <li>**Структура:** Добавлено боковое меню (Sidebar) для раздела News, кнопка Гамбургера перенесена влево.</li>
+        <li>**Рейтинг:** Обновлена визуальная иерархия для ТОП-2 и ТОП-3.</li>
+        <li>**Контент:** Добавлены новые уровни в "In Progress" (LITHIUM, ALSO ANATHEMA, DEPRESSION, XPEH 3HAET).</li>
+      </ul>
+    </div>
+    <div class="update-entry soon">
+        <p>Больше новостей скоро...</p>
+    </div>
   </main>
 
   <footer>
     <p>© 2025 ALSO GDPS • Created by KosmosTT • Designed by PERFARATARRRRRR</p>
   </footer>
 
-  <!-- Modal -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span id="close">&times;</span>
@@ -82,7 +130,7 @@
   </div>
 
   <script>
-    // --- Modal logic ---
+    // --- Modal logic (без изменений) ---
     const cards = document.querySelectorAll(".card");
     const modal = document.getElementById("modal");
     const closeBtn = document.getElementById("close");
@@ -116,18 +164,95 @@
       }
     });
 
-    // --- Tabs ---
+    // --- Tabs & Sidebar Logic (добавляем динамику для гамбургера) ---
     const tabButtons = document.querySelectorAll(".tab-button");
+    const sidebarButtons = document.querySelectorAll(".sidebar-button");
+    const allButtons = [...tabButtons, ...sidebarButtons]; 
     const tabs = document.querySelectorAll(".tab-content");
+    const body = document.body; 
+    const sidebar = document.getElementById("sidebar");
+    const openSidebarBtn = document.getElementById("open-sidebar");
+    const closeSidebarBtn = document.getElementById("close-sidebar");
+    const hamburgerBars = document.querySelectorAll(".hamburger .bar"); // Получаем полоски гамбургера
 
-    tabButtons.forEach(btn => {
+    // Функция для обновления цвета гамбургера
+    function updateHamburgerColor(mode) {
+      let color = '#c000ff'; // Фиолетовый по умолчанию
+      let shadow = '0 0 5px #c000ff';
+
+      if (mode === 'impossible') {
+        color = '#ff0000'; // Красный
+        shadow = '0 0 5px #ff0000';
+      } else if (mode === 'progress') {
+        color = '#b0b0b0'; // Серый
+        shadow = '0 0 5px #b0b0b0';
+      }
+
+      hamburgerBars.forEach(bar => {
+        bar.style.backgroundColor = color;
+        bar.style.boxShadow = shadow;
+      });
+    }
+
+
+    // Логика открытия/закрытия бокового меню
+    openSidebarBtn.addEventListener("click", () => {
+        sidebar.classList.add("open");
+    });
+    closeSidebarBtn.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+    });
+
+    // Логика переключения вкладок (включая кнопки из бокового меню)
+    allButtons.forEach(btn => {
       btn.addEventListener("click", () => {
-        tabButtons.forEach(b => b.classList.remove("active"));
+        
+        // 1. Сброс активных кнопок и контента
+        document.querySelectorAll('button.active').forEach(b => b.classList.remove("active"));
         tabs.forEach(t => t.classList.remove("active"));
-        btn.classList.add("active");
+        
+        // 2. Активация выбранной вкладки
+        btn.classList.add("active"); 
         document.querySelector(`.${btn.dataset.tab}`).classList.add("active");
+
+        // Если нажали на кнопку в sidebar, закрываем его
+        if (btn.classList.contains("sidebar-button")) {
+             sidebar.classList.remove("open");
+             // Делаем активной кнопку "Demon List" на основной панели для чистоты
+             document.querySelector('.tab-button[data-tab="demon-list"]').classList.remove("active");
+        }
+
+        // 3. Динамическая смена фона 
+        body.classList.remove("impossible-mode", "progress-mode"); 
+
+        let currentMode = '';
+        if (btn.dataset.tab === "impossible") {
+          body.classList.add("impossible-mode");
+          currentMode = 'impossible';
+        } else if (btn.dataset.tab === "in-progress") {
+          body.classList.add("progress-mode");
+          currentMode = 'progress';
+        }
+        // Обновляем цвет гамбургера
+        updateHamburgerColor(currentMode);
       });
     });
+
+    // Устанавливаем цвет гамбургера при загрузке страницы (для активной вкладки по умолчанию)
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeTab = document.querySelector('.tab-button.active');
+      if (activeTab) {
+        let initialMode = '';
+        if (activeTab.dataset.tab === 'impossible') {
+          initialMode = 'impossible';
+        } else if (activeTab.dataset.tab === 'in-progress') {
+          initialMode = 'progress';
+        }
+        updateHamburgerColor(initialMode);
+      }
+    });
+
   </script>
 </body>
+</html>
 </html>
