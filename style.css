@@ -158,7 +158,6 @@ h1 {
     box-shadow: 0 0 10px #a000ff;
 }
 
-/* СТИЛИ КНОПКИ NEWS В САЙДБАРЕ ТЕПЕРЬ СТАНДАРТНЫЕ ФИОЛЕТОВЫЕ! */
 .sidebar-button[data-tab="news"]:hover {
     background: linear-gradient(90deg, #7a00ff, #c000ff);
     box-shadow: 0 0 10px #a000ff;
@@ -440,7 +439,7 @@ footer {
     color: #ddd;
 }
 
-/* --- Стили для Кнопки KosmosTT в Sidebar --- */
+/* --- Стили для Кнопок KosmosTT в Sidebar (Золотой) --- */
 .sidebar-content a .sidebar-button[style*="#ffcc00"] {
     border: 2px solid #ffcc00 !important;
     background: none !important;
