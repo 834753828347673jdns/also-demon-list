@@ -103,25 +103,58 @@
   </main>
 
   <main class="tab-content impossible">
-    <p class="soon">⚙️ Soon by <span class="highlight">KosmosTT</span>...</p>
+    
+    <div class="card top1" data-id="212" data-author="guestlolslayer" data-length="44 s (Medium)" data-title="CLOSE THE WINDOW">
+      <img src="closethewindow.jpg" alt="CLOSE THE WINDOW" />
+      <div class="info"><h2>#1 CLOSE THE WINDOW</h2></div>
+    </div>
+    
+    <div class="card top2" data-id="313" data-author="TheMiron341" data-length="40 s (Medium)" data-title="SILENT CIRCLES">
+      <img src="silentcircles.jpg" alt="SILENT CIRCLES" />
+      <div class="info"><h2>#2 SILENT CIRCLES</h2></div>
+    </div>
+    
+    <div class="card top3" data-id="259" data-author="cherviteam" data-length="20 s (Short)" data-title="UOLOL">
+      <img src="uolol.jpg" alt="UOLOL" />
+      <div class="info"><h2>#3 UOLOL</h2></div>
+    </div>
+    
+    <div class="card" data-id="262" data-author="cherviteam" data-length="1:19 (Long)" data-title="V V GAMERAM 2">
+      <img src="vv gameram2.jpg" alt="V V GAMERAM 2" />
+      <div class="info"><h2>#4 V V GAMERAM 2</h2></div>
+    </div>
+    
+    <div class="card" data-id="233" data-author="TheMiron341" data-length="4:57 (XL)" data-title="T3ST 666">
+      <img src="t3st666.jpg" alt="T3ST 666" />
+      <div class="info"><h2>#5 T3ST 666</h2></div>
+    </div>
+    
   </main>
 
   <main class="tab-content news">
     <h2>News & Updates</h2>
+    
     <div class="update-entry">
-      <h3>[07.10.2025] Обновление функционала и навигации</h3>
+      <h3>[07.10.2025] Добавлен Impossible List и Завершение Дизайна</h3>
       <ul>
-        <li>**Навигация:** Изменен порядок вкладок (`Impossible List` теперь перед `In Progress`).</li>
-        <li>**Контент:** Добавлен уровень **XPEH 3HAET** (Depperens) в `In Progress`.</li>
-        <li>**UX/UI:** Добавлен **динамический цвет** Гамбургер-меню (☰) в зависимости от режима.</li>
-        <li>**UX:** Добавлена кнопка **"Back to Top"** (Наверх) для удобства.</li>
-        <li>**Обновление:** Добавлены ссылки на **Telegram** и **TikTok** KosmosTT в Sidebar.</li>
-        <li>**Удалено:** Удален функционал "Ссылка на видео" и вкладка "Rules".</li>
+        <li>**Impossible List:** В список добавлены **5 новых уровней**, включая **CLOSE THE WINDOW** (Топ 1), **SILENT CIRCLES** и **UOLOL**, с указанием ID, автора и длительности.</li>
+        <li>**Динамический Дизайн:** Реализованы полноценные **динамические темы** для вкладок `Impossible List` (красная) и `In Progress` (серая), включая смену фона, цветов кнопок и свечения заголовка.</li>
+        <li>**UX Fixes:** Исправлены проблемы со стилем, при которых текст кнопки **"News"** пропадал при наведении в динамических режимах. Обводка активных вкладок теперь соответствует текущей теме.</li>
+        <li>**Соцсети:** Добавлены прямые ссылки на **Telegram** и **TikTok** KosmosTT в боковое меню.</li>
+        <li>**Навигация:** Добавлены кнопки "Back to Top" и "News" в боковое меню.</li>
       </ul>
     </div>
-    <div class="update-entry soon">
-        <p>Больше новостей скоро...</p>
+    
+    <div class="update-entry">
+      <h3>[06.10.2025] Начало разработки ALSO GDPS Demon List</h3>
+      <ul>
+        <li>**Основной Дизайн:** Разработан базовый футуристический дизайн с неоновым фиолетовым акцентом.</li>
+        <li>**Функционал:** Добавлены все основные вкладки (`Demon List`, `Impossible List`, `In Progress`, `News`).</li>
+        <li>**Интерактивность:** Реализована всплывающая модальная карточка при нажатии на уровень с возможностью **копирования ID**.</li>
+        <li>**Демо-Контент:** Добавлены 6 демо-уровней в `Demon List` и 4 уровня в `In Progress`.</li>
+      </ul>
     </div>
+
   </main>
 
   <footer>
@@ -220,6 +253,7 @@
     const openSidebarBtn = document.getElementById("open-sidebar");
     const closeSidebarBtn = document.getElementById("close-sidebar");
     const hamburgerBars = document.querySelectorAll(".hamburger .bar");
+    const mainTitle = document.querySelector('h1');
 
     // Функция для обновления цвета гамбургера
     function updateHamburgerColor(mode) {
@@ -229,9 +263,13 @@
       if (mode === 'impossible') {
         color = '#ff0000'; 
         shadow = '0 0 5px #ff0000';
+        mainTitle.style.animationName = 'glow-imp';
       } else if (mode === 'progress') {
         color = '#b0b0b0';
         shadow = '0 0 5px #b0b0b0';
+        mainTitle.style.animationName = 'glow-prog';
+      } else {
+        mainTitle.style.animationName = 'glow';
       }
 
       hamburgerBars.forEach(bar => {
