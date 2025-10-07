@@ -1,640 +1,634 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* --- Основной стиль (Demon List) --- */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    background-color: #0d0d1a; /* Темно-фиолетовый фон */
-    color: #e0e0e0; /* Светлый текст */
-    transition: background-color 0.4s ease-in-out;
-    padding-top: 80px; /* Отступ для фиксированного хедера */
-    overflow-x: hidden; /* Избегаем горизонтального скролла */
+  /* Градиент по умолчанию (фиолетовый/неон) */
+  background: radial-gradient(circle at top, #1a0033, #0b001a);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.5s ease; /* Плавный переход фона */
 }
 
-/* --- Динамические режимы (Impossible и In Progress) --- */
-body.impossible-mode {
-    background-color: #260000; /* Темно-красный фон для Impossible List */
-}
-
-body.progress-mode {
-    background-color: #1a1a1a; /* Темно-серый фон для In Progress */
-}
-
-/* --- Хедер --- */
+/* Header */
 header {
-    background-color: #1a1a33; /* Более темный фон для хедера */
-    color: #fff;
-    padding: 10px 20px 5px 20px; /* ИЗМЕНЕНО: уменьшен вертикальный отступ */
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-sizing: border-box; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  text-align: center;
+  margin-top: 40px;
+  width: 90%;
+  max-width: 1200px;
+  position: relative; /* Для позиционирования гамбургера */
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5em;
-    /* УДАЛЕНО: тут было свечение, теперь оно в анимации */
-    animation: glow 1.5s ease-in-out infinite alternate; /* ВОССТАНОВЛЕНА анимация */
+h1 {
+  font-size: 3rem;
+  /* Цвет и глоу по умолчанию (фиолетовый) */
+  background: linear-gradient(90deg, #7a00ff, #c000ff, #7a00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(160, 0, 255, 0.6);
+  animation: glow 4s infinite alternate;
 }
 
-/* 💥 ВОССТАНОВЛЕНА АНИМАЦИЯ ПУЛЬСАЦИИ (GLOW) 💥 */
+/* АНИМАЦИЯ ГЛОУ ПО УМОЛЧАНИЮ (ФИОЛЕТОВЫЙ) */
 @keyframes glow {
-    from {
-        text-shadow: 0 0 10px #c000ff, 0 0 20px #c000ff;
-    }
-    to {
-        text-shadow: 0 0 20px #c000ff, 0 0 30px #c000ff;
-    }
+  from { text-shadow: 0 0 10px #7a00ff; }
+  to { text-shadow: 0 0 25px #c000ff, 0 0 40px #7a00ff; }
 }
 
-/* Свечение для Impossible List */
-body.impossible-mode header h1 {
-    /* text-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000;  (теперь в анимации)*/
-    animation: glow-imp 1.5s ease-in-out infinite alternate;
-}
-@keyframes glow-imp {
-    from {
-        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-    }
-    to {
-        text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
-    }
+.author {
+  color: #aaa;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-top: 5px;
 }
 
-/* Свечение для In Progress */
-body.progress-mode header h1 {
-    /* text-shadow: 0 0 15px #b0b0b0, 0 0 25px #b0b0b0; (теперь в анимации) */
-    animation: glow-prog 1.5s ease-in-out infinite alternate;
-}
-@keyframes glow-prog {
-    from {
-        text-shadow: 0 0 10px #b0b0b0, 0 0 20px #b0b0b0;
-    }
-    to {
-        text-shadow: 0 0 20px #b0b0b0, 0 0 30px #b0b0b0;
-    }
+.highlight {
+  color: #c000ff;
+  text-shadow: 0 0 10px #7a00ff;
+  font-weight: 600;
 }
 
-header .author {
-    font-size: 0.9em;
-    margin-top: 5px;
-    color: #a0a0a0;
-}
-
-header .author .highlight {
-    color: #ffcc00; /* Золотой акцент для имен */
-    font-weight: bold;
-}
-
-/* --- Навигация --- */
-nav {
-    background-color: #1a1a33;
-    padding: 10px 0;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    position: fixed;
-    width: 100%;
-    top: 75px; /* ИЗМЕНЕНО: подъем навигации, чтобы она не закрывалась хедером */
-    left: 0;
-    z-index: 999;
-    box-sizing: border-box;
-}
-
-nav .tab-button {
-    background: none;
-    border: none;
-    color: #e0e0e0;
-    font-size: 1.1em;
-    padding: 10px 20px;
-    margin: 0 10px;
-    cursor: pointer;
-    transition: color 0.3s ease, text-shadow 0.3s ease, border-bottom 0.3s ease;
-    position: relative;
-    outline: none; /* Убираем стандартную обводку фокуса */
-}
-
-nav .tab-button:hover:not(.active) {
-    color: #fff;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-}
-
-nav .tab-button.active {
-    color: #c000ff; /* Фиолетовый для активной вкладки Demon List */
-    font-weight: bold;
-    text-shadow: 0 0 8px #c000ff, 0 0 15px #c000ff;
-    border-bottom: 2px solid #c000ff;
-}
-
-/* Динамические цвета для активной кнопки навигации */
-body.impossible-mode nav .tab-button.active {
-    color: #ff0000; /* Красный для Impossible List */
-    text-shadow: 0 0 8px #ff0000, 0 0 15px #ff0000;
-    border-bottom: 2px solid #ff0000;
-}
-
-body.progress-mode nav .tab-button.active {
-    color: #b0b0b0; /* Серый для In Progress */
-    text-shadow: 0 0 8px #b0b0b0, 0 0 15px #b0b0b0;
-    border-bottom: 2px solid #b0b0b0;
-}
-
-
-/* --- Основной контент (карточки) --- */
-main {
-    max-width: 1200px;
-    margin: 150px auto 20px auto; /* ИЗМЕНЕНО: уменьшен отступ, чтобы поднять контент */
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-
-/* 💥 ИСПРАВЛЕНИЕ: Скрываем все вкладки по умолчанию 💥 */
-.tab-content {
-    display: none; /* Скрываем все вкладки */
-    gap: 20px;
-    padding: 20px 0; 
-}
-
-/* 💥 ИСПРАВЛЕНИЕ: Отображаем только активную вкладку 💥 */
-.tab-content.active {
-    display: grid; /* Показываем активную вкладку в режиме сетки */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-}
-
-/* Отдельно для вкладки News, чтобы она была блочным элементом */
-.tab-content.news.active {
-    display: block; 
-}
-
-
-.card {
-    background-color: #1a1a33;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    position: relative;
-    padding-bottom: 50%; /* Для поддержания соотношения сторон изображения */
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-}
-
-.card img {
-    width: 100%;
-    height: 100%; 
-    object-fit: cover; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    filter: brightness(0.7); 
-    transition: filter 0.3s ease;
-}
-
-.card:hover img {
-    filter: brightness(0.9);
-}
-
-.card .info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-    padding: 15px;
-    color: #fff;
-}
-
-.card h2 {
-    margin: 0;
-    font-size: 1.4em;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
-}
-
-/* Свечение для Топ 1, 2, 3 (Demon List) - Фиолетовое по умолчанию */
-.card.top1 {
-    box-shadow: 0 0 15px #c000ff, 0 0 25px #c000ff;
-}
-.card.top2 {
-    box-shadow: 0 0 12px #c000ff, 0 0 20px #c000ff;
-}
-.card.top3 {
-    box-shadow: 0 0 10px #c000ff, 0 0 15px #c000ff;
-}
-
-/* Свечение для Топ 1, 2, 3 (Impossible List) - Переопределяем на Красное */
-body.impossible-mode .card.top1 {
-    box-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000; 
-}
-body.impossible-mode .card.top2 {
-    box-shadow: 0 0 12px #ff0000, 0 0 20px #ff0000;
-}
-body.impossible-mode .card.top3 {
-    box-shadow: 0 0 10px #ff0000, 0 0 15px #ff0000;
-}
-
-/* Стили для In Progress / Unverified */
-.tab-content.in-progress .card {
-    filter: grayscale(80%) brightness(0.6); 
-}
-
-.tab-content.in-progress .card:hover {
-    filter: grayscale(0%) brightness(1); 
-}
-
-.tab-content.in-progress .card h2 {
-    color: #b0b0b0; 
-    text-shadow: none;
-}
-
-body.progress-mode .card.top1,
-body.progress-mode .card.top2,
-body.progress-mode .card.top3 {
-    box-shadow: 0 0 15px #b0b0b0, 0 0 25px #b0b0b0; 
-}
-
-
-/* --- Модальное окно --- */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1001; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px); 
-    justify-content: center;
-    align-items: center;
-}
-
-.modal.show {
-    display: flex;
-}
-
-.modal-content {
-    background-color: #1a1a33;
-    margin: auto;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.8), 0 0 30px #c000ff; 
-    width: 80%;
-    max-width: 500px;
-    position: relative;
-    text-align: center;
-    transform: scale(0.9);
-    opacity: 0;
-    animation: modal-appear 0.3s forwards;
-    border: 2px solid #c000ff;
-}
-
-/* Динамическое свечение модалки */
-body.impossible-mode .modal-content {
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.8), 0 0 30px #ff0000;
-    border: 2px solid #ff0000;
-}
-body.progress-mode .modal-content {
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.8), 0 0 30px #b0b0b0;
-    border: 2px solid #b0b0b0;
-}
-
-
-@keyframes modal-appear {
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.modal-content h2 {
-    color: #c000ff; 
-    margin-top: 0;
-    font-size: 2em;
-    text-shadow: 0 0 10px #c000ff;
-}
-
-body.impossible-mode .modal-content h2 {
-    color: #ff0000; 
-    text-shadow: 0 0 10px #ff0000;
-}
-body.progress-mode .modal-content h2 {
-    color: #b0b0b0; 
-    text-shadow: 0 0 10px #b0b0b0;
-}
-
-
-.modal-content p {
-    font-size: 1.1em;
-    margin: 10px 0;
-}
-
-.modal-content strong {
-    color: #ffcc00; 
-}
-
-#copy-btn {
-    background-color: #ffcc00;
-    color: #1a1a33;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    margin-top: 15px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-weight: bold;
-}
-
-#copy-btn:hover {
-    background-color: #e6b800;
-    transform: translateY(-2px);
-}
-
-#copied-msg {
-    color: #33ff33; 
-    font-size: 0.9em;
-    margin-top: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-#copied-msg.visible {
-    opacity: 1;
-}
-
-.close {
-    color: #e0e0e0;
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close:hover,
-.close:focus {
-    color: #fff;
-    text-decoration: none;
-}
-
-/* --- Футер --- */
-footer {
-    text-align: center;
-    padding: 25px 20px; 
-    background-color: #1a1a33; /* ИЗМЕНЕНО: цвет футера как у хедера */
-    color: #a0a0a0;
-    margin-top: 30px;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
-}
-
-/* --- Кнопка "Наверх" --- */
-#back-to-top {
-    display: none; 
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #c000ff; 
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px #c000ff;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    z-index: 900;
-}
-
-#back-to-top:hover {
-    background-color: #a000d0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), 0 0 20px #c000ff;
-}
-
-/* Динамические цвета для кнопки "Наверх" */
-body.impossible-mode #back-to-top {
-    background-color: #ff0000; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px #ff0000;
-}
-body.impossible-mode #back-to-top:hover {
-    background-color: #cc0000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), 0 0 20px #ff0000;
-}
-
-body.progress-mode #back-to-top {
-    background-color: #b0b0b0; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px #b0b0b0;
-}
-body.progress-mode #back-to-top:hover {
-    background-color: #909090;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), 0 0 20px #b0b0b0;
-}
-
-
-/* --- Боковое меню (Sidebar) --- */
+/* --- HAMBURGER BUTTON --- */
 .hamburger {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 5px; 
+    left: 0; 
+    width: 30px;
+    height: 30px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1001; 
-}
-
-.hamburger .bar {
-    display: block;
-    width: 30px;
-    height: 3px;
-    background-color: #c000ff; 
-    margin: 6px 0;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-    box-shadow: 0 0 5px #c000ff; 
-}
-
-.sidebar {
-    height: 100%;
-    width: 0; 
-    position: fixed;
-    z-index: 2000; 
-    top: 0;
-    left: 0;
-    background-color: #1a1a33;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    z-index: 20; 
+    transition: top 0.3s;
+}
+.bar {
+    width: 100%;
+    height: 3px;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s; 
+}
+
+/* Поднимаем Гамбургер на телефонах (меньше 600px) */
+@media (max-width: 600px) {
+    .hamburger {
+        top: -15px; 
+    }
+}
+
+
+/* --- SIDEBAR MENU --- */
+.sidebar {
+    height: 100%;
+    width: 0; /* Изначально скрыто */
+    position: fixed;
+    z-index: 15;
+    top: 0;
+    left: 0;
+    background: rgba(10, 0, 20, 0.95); 
+    backdrop-filter: blur(10px);
+    overflow-x: hidden;
+    transition: 0.5s;
+    /* ФИОЛЕТОВЫЙ ПО УМОЛЧАНИЮ */
+    box-shadow: 5px 0 25px rgba(122, 0, 255, 0.5); 
 }
 
 .sidebar.open {
-    width: 250px; 
+    width: 280px; /* Ширина открытого меню */
 }
 
-.sidebar .close-btn {
+.close-btn {
     position: absolute;
-    top: 10px;
+    top: 20px;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+    color: #fff;
     background: none;
     border: none;
-    color: #e0e0e0;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: 0.3s;
 }
-
-.sidebar .close-btn:hover {
-    color: #fff;
+.close-btn:hover {
+    color: #c000ff;
 }
 
 .sidebar-content {
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
 }
 
-.sidebar .menu-title {
-    color: #ffcc00;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    text-shadow: 0 0 8px #ffcc00;
-}
-
-.sidebar-button {
-    background: #2a2a44;
-    border: 2px solid #c000ff; 
-    color: #e0e0e0;
-    padding: 12px 15px;
-    text-align: left;
-    font-size: 1.1em;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 8px rgba(192, 0, 255, 0.4);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.sidebar-button:hover {
-    background-color: #3a3a55;
-    box-shadow: 0 0 12px rgba(192, 0, 255, 0.7);
+.menu-title {
+    font-size: 1.8rem;
     color: #fff;
-    transform: translateX(5px);
-}
-
-.sidebar-button .highlight-icon {
-    font-size: 1.3em;
-    line-height: 1;
-}
-
-/* Стили для News & Updates */
-.update-entry {
-    background-color: #1a1a33;
-    padding: 15px 20px;
-    border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    border: 1px solid #2a2a44;
+    text-shadow: 0 0 10px #7a00ff;
+    border-bottom: 2px solid rgba(122, 0, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+/* Стили для кнопок в боковом меню */
+.sidebar-button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    text-align: left;
+    padding: 15px 20px;
+    background: none;
+    border: 2px solid #7a00ff;
+    color: #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: none; 
+}
+.sidebar-button:hover {
+    background: linear-gradient(90deg, #7a00ff, #c000ff);
+    box-shadow: 0 0 10px #a000ff;
+}
+
+/* Fix: Цвет текста для кнопки NEWS при наведении в Demon List (фиолетовый режим) */
+.sidebar-button[data-tab="news"]:hover {
+    color: #fff; /* Убедимся, что в фиолетовом режиме текст белый */
+    background: linear-gradient(90deg, #7a00ff, #c000ff);
+    box-shadow: 0 0 10px #a000ff;
+}
+
+
+/* Navigation Tabs (Основная навигация) */
+nav {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px;
+  justify-content: center; 
+}
+
+.tab-button {
+  background: none;
+  border: 2px solid #7a00ff; /* Базовый цвет */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Стили для активной/наведенной кнопки в Demon List (Фиолетовый) */
+.tab-content.demon-list.active ~ nav .tab-button.active, 
+.tab-content.demon-list.active ~ nav .tab-button:hover,
+nav .tab-button.active, 
+nav .tab-button:hover {
+  background: linear-gradient(90deg, #7a00ff, #c000ff);
+  box-shadow: 0 0 20px #a000ff;
+  /* Сброс, чтобы динамические стили ниже перекрывали это */
+}
+
+/* Content Structure Fix */
+.tab-content {
+  display: none;
+  margin: 50px auto;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.tab-content.active {
+  display: block; 
+}
+
+/* Только Demon List и In Progress используют grid-разметку */
+.demon-list.active,
+.in-progress.active {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.soon {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 60px;
+  color: #888;
+}
+
+/* Cards */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+  transition: 0.4s ease;
+}
+.card:hover img {
+  transform: scale(1.1);
+  filter: brightness(100%);
+}
+.info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(40, 0, 80, 0.7);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  padding: 15px;
+}
+.info h2 {
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: 0 0 10px #a000ff;
+}
+
+/* --- ОБНОВЛЕННЫЕ СВЕЧЕНИЯ ТОР-3 --- */
+
+/* Топ 1: Максимальное свечение (Розово-фиолетовый) */
+.top1 { 
+    box-shadow: 0 0 25px #ff00ff, 0 0 60px #ff66ff, inset 0 0 30px #a000ff; 
+    animation: pulse1 3s infinite alternate; 
+}
+
+/* Топ 2: Более сильное свечение (Ярко-фиолетовый) */
+.top2 { 
+    box-shadow: 0 0 30px #9900ff, 0 0 70px #cc00ff, inset 0 0 25px #6600ff; 
+    animation: pulse2 3s infinite alternate; 
+}
+
+/* Топ 3: Немного ослабленное свечение (Голубой/Светло-фиолетовый) */
+.top3 { 
+    box-shadow: 0 0 15px #3300ff, 0 0 40px #66ccff, inset 0 0 10px #6600ff; 
+    animation: pulse3 3s infinite alternate; 
+}
+
+/* Анимации */
+@keyframes pulse1 { 
+    from { box-shadow: 0 0 20px #ff33ff; } 
+    to { box-shadow: 0 0 80px #ff00ff; } 
+}
+@keyframes pulse2 { 
+    from { box-shadow: 0 0 25px #9900ff; } 
+    to { box-shadow: 0 0 90px #cc00ff; } 
+}
+@keyframes pulse3 { 
+    from { box-shadow: 0 0 10px #3300ff; } 
+    to { box-shadow: 0 0 50px #66ccff; } 
+}
+
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show { display: flex; }
+
+.modal-content {
+  background: linear-gradient(145deg, #250040, #1a0033);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #a000ff;
+  text-align: center;
+  position: relative;
+  animation: popIn 0.3s ease forwards;
+}
+
+#close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#close:hover { color: #a000ff; }
+
+.modal-content h2 {
+  color: #c000ff;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px #a000ff;
+}
+
+.modal-content p {
+  color: #ddd;
+  margin: 8px 0;
+}
+
+/* Copy button */
+#copy-btn {
+  margin-top: 10px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #7a00ff, #c000ff);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%; 
+  margin-bottom: 10px;
+}
+
+#copy-btn:hover {
+  background: linear-gradient(90deg, #c000ff, #7a00ff);
+  box-shadow: 0 0 20px #a000ff;
+}
+
+#copied-msg {
+  opacity: 0;
+  color: #a000ff;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  transition: opacity 0.3s ease;
+}
+
+#copied-msg.visible { opacity: 1; }
+
+footer {
+  margin: 40px 0 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+/* --- Кнопка НАВЕРХ --- */
+#back-to-top {
+  display: none; /* Скрыта по умолчанию */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: rgba(122, 0, 255, 0.7); /* Фиолетовый полупрозрачный */
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 18px;
+  box-shadow: 0 0 10px rgba(122, 0, 255, 0.9);
+  transition: 0.3s;
+}
+
+#back-to-top:hover {
+  background-color: #c000ff;
+  box-shadow: 0 0 20px #a000ff;
+}
+
+
+/* --- Стили для Вкладки News --- */
+.tab-content.news h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px #a000ff;
+}
+
+.update-entry {
+    background: linear-gradient(145deg, #250040, #1a0033);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(122, 0, 255, 0.4);
+    border-left: 5px solid #c000ff;
 }
 
 .update-entry h3 {
-    color: #ffcc00; 
-    margin-top: 0;
-    font-size: 1.3em;
-    text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+    color: #c000ff;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgba(192, 0, 255, 0.3);
+    padding-bottom: 10px;
 }
 
 .update-entry ul {
     list-style: none;
-    padding: 0;
+    padding-left: 0;
     margin-top: 10px;
 }
 
 .update-entry ul li {
-    margin-bottom: 8px;
-    line-height: 1.4;
+    padding: 5px 0;
+    color: #ddd;
 }
 
-.update-entry ul li strong {
-    color: #e0e0e0;
+/* --- Стили для Кнопок KosmosTT в Sidebar (Золотой) --- */
+.sidebar-content a .sidebar-button[style*="#ffcc00"] {
+    border: 2px solid #ffcc00 !important;
+    color: #fff !important; /* Fix: Текст белый по умолчанию */
+    background: none !important;
+}
+/* Fix: Текст становится темным при наведении на золотые кнопки */
+.sidebar-content a .sidebar-button[style*="#ffcc00"]:hover {
+    background: linear-gradient(90deg, #ffcc00, #ff9900) !important;
+    box-shadow: 0 0 10px #ffcc00 !important;
+    color: #1a0033 !important; 
 }
 
-.tab-content.news {
-    max-width: 800px; 
-    margin-left: auto;
-    margin-right: auto;
+
+/* ======================================= */
+/* --- ДИНАМИЧЕСКИЕ РЕЖИМЫ --- */
+/* ======================================= */
+
+/* --- Стили для IMPOSSIBLE LIST (Красный/Кровь) --- */
+body.impossible-mode {
+    /* Фон становится красно-черным */
+    background: radial-gradient(circle at top, #330000, #1a0000);
 }
 
-/* Медиа-запросы для адаптивности */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.8em;
-    }
-    nav {
-        top: 80px; 
-    }
-    nav .tab-button {
-        font-size: 0.9em;
-        padding: 8px 10px;
-        margin: 0 5px;
-    }
-    main {
-        margin-top: 130px; 
-        padding: 0 10px;
-    }
-    .card {
-        padding-bottom: 60%; 
-    }
-    .card h2 {
-        font-size: 1.2em;
-    }
-    .modal-content {
-        width: 90%;
-        padding: 20px;
-    }
-    .sidebar.open {
-        width: 100%; 
-    }
+/* КРАСНЫЙ ГЛОУ ДЛЯ H1 */
+body.impossible-mode h1 {
+    background: linear-gradient(90deg, #ff0000, #ff6666, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    animation-name: glow-imp; /* СМЕНА ИМЕНИ АНИМАЦИИ */
+}
+@keyframes glow-imp {
+    from { text-shadow: 0 0 10px #ff0000; }
+    to { text-shadow: 0 0 25px #ff6666, 0 0 40px #ff0000; }
 }
 
-@media (max-width: 480px) {
-    header {
-        padding: 10px;
-    }
-    nav {
-        flex-wrap: wrap; 
-        justify-content: center;
-        padding: 5px 0;
-    }
-    nav .tab-button {
-        margin: 5px;
-    }
-    .hamburger {
-      top: 15px;
-      left: 15px;
-    }
-    body {
-        padding-top: 70px; 
-    }
-    main {
-        margin-top: 120px; 
-    }
+/* Красные акценты */
+body.impossible-mode .highlight,
+body.impossible-mode .modal-content h2,
+body.impossible-mode .menu-title {
+    background: linear-gradient(90deg, #ff0000, #ff6666, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    border-color: rgba(255, 0, 0, 0.3);
+}
+
+/* Кнопки навигации (Главное меню) в красном режиме */
+body.impossible-mode .tab-button {
+    border: 2px solid #ff0000;
+}
+body.impossible-mode .tab-button.active, 
+body.impossible-mode .tab-button:hover {
+    background: linear-gradient(90deg, #ff0000, #ff6666);
+    box-shadow: 0 0 20px #ff0000;
+}
+
+/* Sidebar buttons в красном режиме */
+body.impossible-mode .sidebar-button {
+    border: 2px solid #ff0000;
+}
+body.impossible-mode .sidebar-button:hover {
+    background: linear-gradient(90deg, #ff0000, #ff6666);
+    box-shadow: 0 0 10px #ff0000;
+}
+
+/* Fix: Цвет текста для кнопки NEWS при наведении в Impossible List (красный режим) */
+body.impossible-mode .sidebar-button[data-tab="news"]:hover {
+    color: #1a0000; /* Текст становится темным */
+}
+
+
+/* КРАСНЫЕ СТИЛИ ДЛЯ SIDEBAR */
+body.impossible-mode .sidebar {
+    background: rgba(20, 0, 0, 0.95);
+    box-shadow: 5px 0 25px rgba(255, 0, 0, 0.5);
+}
+
+/* Красная кнопка копирования */
+body.impossible-mode #copy-btn {
+    background: linear-gradient(90deg, #ff0000, #ff6666);
+    box-shadow: none;
+}
+body.impossible-mode #copy-btn:hover {
+    background: linear-gradient(90deg, #ff6666, #ff0000);
+    box-shadow: 0 0 20px #ff0000;
+}
+body.impossible-mode #copied-msg {
+    color: #ff0000;
+}
+
+/* IMPOSSIBLE MODE Back to Top */
+body.impossible-mode #back-to-top {
+    background-color: rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
+}
+body.impossible-mode #back-to-top:hover {
+    background-color: #ff3333;
+    box-shadow: 0 0 20px #ff0000;
+}
+
+
+/* --- Стили для IN PROGRESS (Серый/Сырой) --- */
+body.progress-mode {
+    /* Фон становится серо-черным */
+    background: radial-gradient(circle at top, #2b2b2b, #151515);
+}
+
+/* СЕРЫЙ ГЛОУ ДЛЯ H1 */
+body.progress-mode h1 {
+    background: linear-gradient(90deg, #b0b0b0, #ffffff, #b0b0b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
+    animation-name: glow-prog; /* СМЕНА ИМЕНИ АНИМАЦИИ */
+}
+@keyframes glow-prog {
+    from { text-shadow: 0 0 10px #b0b0b0; }
+    to { text-shadow: 0 0 25px #ffffff, 0 0 40px #b0b0b0; }
+}
+
+/* Серые/желтые акценты */
+body.progress-mode .highlight,
+body.progress-mode .modal-content h2,
+body.progress-mode .menu-title {
+    background: linear-gradient(90deg, #b0b0b0, #ffffff, #b0b0b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
+    border-color: rgba(176, 176, 176, 0.3);
+}
+
+/* Кнопки навигации (Главное меню) в сером режиме */
+body.progress-mode .tab-button {
+    border: 2px solid #b0b0b0;
+}
+body.progress-mode .tab-button.active, 
+body.progress-mode .tab-button:hover {
+    background: linear-gradient(90deg, #b0b0b0, #ffffff);
+    box-shadow: 0 0 20px #b0b0b0;
+}
+
+/* Sidebar buttons в сером режиме */
+body.progress-mode .sidebar-button {
+    border: 2px solid #b0b0b0;
+}
+body.progress-mode .sidebar-button:hover {
+    background: linear-gradient(90deg, #b0b0b0, #ffffff);
+    box-shadow: 0 0 10px #b0b0b0;
+}
+
+/* Fix: Цвет текста для кнопки NEWS при наведении в In Progress (серый режим) */
+body.progress-mode .sidebar-button[data-tab="news"]:hover {
+    color: #151515; /* Текст становится темным */
+}
+
+
+/* СЕРЫЕ СТИЛИ ДЛЯ SIDEBAR */
+body.progress-mode .sidebar {
+    background: rgba(20, 20, 20, 0.95); 
+    box-shadow: 5px 0 25px rgba(176, 176, 176, 0.5);
+}
+
+/* Серая кнопка копирования */
+body.progress-mode #copy-btn {
+    background: linear-gradient(90deg, #b0b0b0, #ffffff);
+}
+body.progress-mode #copy-btn:hover {
+    background: linear-gradient(90deg, #ffffff, #b0b0b0);
+    box-shadow: 0 0 20px #b0b0b0;
+}
+body.progress-mode #copied-msg {
+    color: #b0b0b0;
+}
+
+/* PROGRESS MODE Back to Top */
+body.progress-mode #back-to-top {
+    background-color: rgba(176, 176, 176, 0.7);
+    box-shadow: 0 0 10px rgba(176, 176, 176, 0.9);
+}
+body.progress-mode #back-to-top:hover {
+    background-color: #ffffff;
+    box-shadow: 0 0 20px #b0b0b0;
+    color: #151515;
 }
