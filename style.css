@@ -21,7 +21,7 @@ body.progress-mode {
 header {
     background-color: #1a1a33; /* Более темный фон для хедера */
     color: #fff;
-    padding: 15px 20px;
+    padding: 10px 20px; /* ИЗМЕНЕНО: уменьшен вертикальный отступ */
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     position: fixed;
@@ -98,7 +98,7 @@ nav {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     position: fixed;
     width: 100%;
-    top: 100px; /* Под хедером */
+    top: 85px; /* ИЗМЕНЕНО: подъем навигации, чтобы она не закрывалась хедером */
     left: 0;
     z-index: 999;
     box-sizing: border-box;
@@ -146,7 +146,7 @@ body.progress-mode nav .tab-button.active {
 /* --- Основной контент (карточки) --- */
 main {
     max-width: 1200px;
-    margin: 150px auto 20px auto; /* Отступ сверху для хедера и навигации */
+    margin: 160px auto 20px auto; /* ИЗМЕНЕНО: отступ сверху для хедера и навигации */
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -390,7 +390,7 @@ body.progress-mode .modal-content h2 {
 /* --- Футер --- */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 25px 20px; /* ИЗМЕНЕНО: увеличен вертикальный отступ */
     background-color: #1a1a33;
     color: #a0a0a0;
     margin-top: 30px;
