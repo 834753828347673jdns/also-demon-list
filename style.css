@@ -158,7 +158,9 @@ h1 {
     box-shadow: 0 0 10px #a000ff;
 }
 
+/* Fix: Цвет текста для кнопки NEWS при наведении в Demon List (фиолетовый режим) */
 .sidebar-button[data-tab="news"]:hover {
+    color: #fff; /* Убедимся, что в фиолетовом режиме текст белый */
     background: linear-gradient(90deg, #7a00ff, #c000ff);
     box-shadow: 0 0 10px #a000ff;
 }
@@ -175,7 +177,7 @@ nav {
 
 .tab-button {
   background: none;
-  border: 2px solid #7a00ff;
+  border: 2px solid #7a00ff; /* Базовый цвет */
   color: #fff;
   padding: 10px 20px;
   border-radius: 12px;
@@ -183,9 +185,14 @@ nav {
   transition: 0.3s;
 }
 
-.tab-button.active, .tab-button:hover {
+/* Стили для активной/наведенной кнопки в Demon List (Фиолетовый) */
+.tab-content.demon-list.active ~ nav .tab-button.active, 
+.tab-content.demon-list.active ~ nav .tab-button:hover,
+nav .tab-button.active, 
+nav .tab-button:hover {
   background: linear-gradient(90deg, #7a00ff, #c000ff);
   box-shadow: 0 0 20px #a000ff;
+  /* Сброс, чтобы динамические стили ниже перекрывали это */
 }
 
 /* Content Structure Fix */
@@ -442,12 +449,14 @@ footer {
 /* --- Стили для Кнопок KosmosTT в Sidebar (Золотой) --- */
 .sidebar-content a .sidebar-button[style*="#ffcc00"] {
     border: 2px solid #ffcc00 !important;
+    color: #fff !important; /* Fix: Текст белый по умолчанию */
     background: none !important;
 }
+/* Fix: Текст становится темным при наведении на золотые кнопки */
 .sidebar-content a .sidebar-button[style*="#ffcc00"]:hover {
     background: linear-gradient(90deg, #ffcc00, #ff9900) !important;
     box-shadow: 0 0 10px #ffcc00 !important;
-    color: #1a0033 !important;
+    color: #1a0033 !important; 
 }
 
 
@@ -476,8 +485,6 @@ body.impossible-mode h1 {
 
 /* Красные акценты */
 body.impossible-mode .highlight,
-body.impossible-mode .tab-button.active, 
-body.impossible-mode .tab-button:hover,
 body.impossible-mode .modal-content h2,
 body.impossible-mode .menu-title {
     background: linear-gradient(90deg, #ff0000, #ff6666, #ff0000);
@@ -487,14 +494,30 @@ body.impossible-mode .menu-title {
     border-color: rgba(255, 0, 0, 0.3);
 }
 
-body.impossible-mode .tab-button,
-body.impossible-mode .sidebar-button { /* Sidebar buttons */
+/* Кнопки навигации (Главное меню) в красном режиме */
+body.impossible-mode .tab-button {
+    border: 2px solid #ff0000;
+}
+body.impossible-mode .tab-button.active, 
+body.impossible-mode .tab-button:hover {
+    background: linear-gradient(90deg, #ff0000, #ff6666);
+    box-shadow: 0 0 20px #ff0000;
+}
+
+/* Sidebar buttons в красном режиме */
+body.impossible-mode .sidebar-button {
     border: 2px solid #ff0000;
 }
 body.impossible-mode .sidebar-button:hover {
     background: linear-gradient(90deg, #ff0000, #ff6666);
     box-shadow: 0 0 10px #ff0000;
 }
+
+/* Fix: Цвет текста для кнопки NEWS при наведении в Impossible List (красный режим) */
+body.impossible-mode .sidebar-button[data-tab="news"]:hover {
+    color: #1a0000; /* Текст становится темным */
+}
+
 
 /* КРАСНЫЕ СТИЛИ ДЛЯ SIDEBAR */
 body.impossible-mode .sidebar {
@@ -547,8 +570,6 @@ body.progress-mode h1 {
 
 /* Серые/желтые акценты */
 body.progress-mode .highlight,
-body.progress-mode .tab-button.active, 
-body.progress-mode .tab-button:hover,
 body.progress-mode .modal-content h2,
 body.progress-mode .menu-title {
     background: linear-gradient(90deg, #b0b0b0, #ffffff, #b0b0b0);
@@ -558,14 +579,30 @@ body.progress-mode .menu-title {
     border-color: rgba(176, 176, 176, 0.3);
 }
 
-body.progress-mode .tab-button,
-body.progress-mode .sidebar-button { /* Sidebar buttons */
+/* Кнопки навигации (Главное меню) в сером режиме */
+body.progress-mode .tab-button {
+    border: 2px solid #b0b0b0;
+}
+body.progress-mode .tab-button.active, 
+body.progress-mode .tab-button:hover {
+    background: linear-gradient(90deg, #b0b0b0, #ffffff);
+    box-shadow: 0 0 20px #b0b0b0;
+}
+
+/* Sidebar buttons в сером режиме */
+body.progress-mode .sidebar-button {
     border: 2px solid #b0b0b0;
 }
 body.progress-mode .sidebar-button:hover {
     background: linear-gradient(90deg, #b0b0b0, #ffffff);
     box-shadow: 0 0 10px #b0b0b0;
 }
+
+/* Fix: Цвет текста для кнопки NEWS при наведении в In Progress (серый режим) */
+body.progress-mode .sidebar-button[data-tab="news"]:hover {
+    color: #151515; /* Текст становится темным */
+}
+
 
 /* СЕРЫЕ СТИЛИ ДЛЯ SIDEBAR */
 body.progress-mode .sidebar {
