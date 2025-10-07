@@ -151,18 +151,24 @@ main {
     box-sizing: border-box;
 }
 
-/* ГАРАНТИРУЕМ, ЧТО ВСЕ ВКЛАДКИ КОНТЕНТА ИСПОЛЬЗУЮТ СЕТКУ (GRID) */
-/* Demon List, Impossible List, In Progress, News */
+/* 💥 ИСПРАВЛЕНИЕ: Скрываем все вкладки по умолчанию 💥 */
 .tab-content {
-    display: grid; /* Включаем сетку */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 280px - минимальная ширина карточки */
+    display: none; /* Скрываем все вкладки */
     gap: 20px;
-    padding: 20px 0; /* Убираем горизонтальный padding, чтобы сетка расширялась */
+    padding: 20px 0; 
 }
 
-.tab-content.news {
-    display: block; /* Новости остаются блочным элементом */
+/* 💥 ИСПРАВЛЕНИЕ: Отображаем только активную вкладку 💥 */
+.tab-content.active {
+    display: grid; /* Показываем активную вкладку в режиме сетки */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
 }
+
+/* Отдельно для вкладки News, чтобы она была блочным элементом */
+.tab-content.news.active {
+    display: block; 
+}
+
 
 .card {
     background-color: #1a1a33;
@@ -182,12 +188,12 @@ main {
 
 .card img {
     width: 100%;
-    height: 100%; /* Занимает всю высоту родителя */
-    object-fit: cover; /* Заполнение контейнера, обрезая по необходимости */
+    height: 100%; 
+    object-fit: cover; 
     position: absolute;
     top: 0;
     left: 0;
-    filter: brightness(0.7); /* Затемнение изображения */
+    filter: brightness(0.7); 
     transition: filter 0.3s ease;
 }
 
@@ -235,22 +241,22 @@ body.impossible-mode .card.top3 {
 
 /* Стили для In Progress / Unverified */
 .tab-content.in-progress .card {
-    filter: grayscale(80%) brightness(0.6); /* Немного приглушенный вид */
+    filter: grayscale(80%) brightness(0.6); 
 }
 
 .tab-content.in-progress .card:hover {
-    filter: grayscale(0%) brightness(1); /* Возвращение цвета при наведении */
+    filter: grayscale(0%) brightness(1); 
 }
 
 .tab-content.in-progress .card h2 {
-    color: #b0b0b0; /* Серый текст */
+    color: #b0b0b0; 
     text-shadow: none;
 }
 
 body.progress-mode .card.top1,
 body.progress-mode .card.top2,
 body.progress-mode .card.top3 {
-    box-shadow: 0 0 15px #b0b0b0, 0 0 25px #b0b0b0; /* Серое свечение */
+    box-shadow: 0 0 15px #b0b0b0, 0 0 25px #b0b0b0; 
 }
 
 
@@ -258,14 +264,14 @@ body.progress-mode .card.top3 {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1001; /* Поверх всего */
+    z-index: 1001; 
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px); /* Размытие фона */
+    backdrop-filter: blur(5px); 
     justify-content: center;
     align-items: center;
 }
@@ -279,7 +285,7 @@ body.progress-mode .card.top3 {
     margin: auto;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.8), 0 0 30px #c000ff; /* Фиолетовое свечение модалки */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.8), 0 0 30px #c000ff; 
     width: 80%;
     max-width: 500px;
     position: relative;
@@ -309,18 +315,18 @@ body.progress-mode .modal-content {
 }
 
 .modal-content h2 {
-    color: #c000ff; /* Фиолетовый заголовок */
+    color: #c000ff; 
     margin-top: 0;
     font-size: 2em;
     text-shadow: 0 0 10px #c000ff;
 }
 
 body.impossible-mode .modal-content h2 {
-    color: #ff0000; /* Красный заголовок */
+    color: #ff0000; 
     text-shadow: 0 0 10px #ff0000;
 }
 body.progress-mode .modal-content h2 {
-    color: #b0b0b0; /* Серый заголовок */
+    color: #b0b0b0; 
     text-shadow: 0 0 10px #b0b0b0;
 }
 
@@ -331,7 +337,7 @@ body.progress-mode .modal-content h2 {
 }
 
 .modal-content strong {
-    color: #ffcc00; /* Золотой для выделения */
+    color: #ffcc00; 
 }
 
 #copy-btn {
@@ -353,7 +359,7 @@ body.progress-mode .modal-content h2 {
 }
 
 #copied-msg {
-    color: #33ff33; /* Зеленый текст */
+    color: #33ff33; 
     font-size: 0.9em;
     margin-top: 10px;
     opacity: 0;
@@ -393,11 +399,11 @@ footer {
 
 /* --- Кнопка "Наверх" --- */
 #back-to-top {
-    display: none; /* Скрыта по умолчанию */
+    display: none; 
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #c000ff; /* Фиолетовый */
+    background-color: #c000ff; 
     color: white;
     border: none;
     border-radius: 50%;
@@ -417,7 +423,7 @@ footer {
 
 /* Динамические цвета для кнопки "Наверх" */
 body.impossible-mode #back-to-top {
-    background-color: #ff0000; /* Красный */
+    background-color: #ff0000; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px #ff0000;
 }
 body.impossible-mode #back-to-top:hover {
@@ -426,7 +432,7 @@ body.impossible-mode #back-to-top:hover {
 }
 
 body.progress-mode #back-to-top {
-    background-color: #b0b0b0; /* Серый */
+    background-color: #b0b0b0; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px #b0b0b0;
 }
 body.progress-mode #back-to-top:hover {
@@ -444,25 +450,25 @@ body.progress-mode #back-to-top:hover {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1001; /* Выше хедера */
+    z-index: 1001; 
 }
 
 .hamburger .bar {
     display: block;
     width: 30px;
     height: 3px;
-    background-color: #c000ff; /* Фиолетовый по умолчанию */
+    background-color: #c000ff; 
     margin: 6px 0;
     transition: all 0.3s ease;
     border-radius: 2px;
-    box-shadow: 0 0 5px #c000ff; /* Свечение гамбургера */
+    box-shadow: 0 0 5px #c000ff; 
 }
 
 .sidebar {
     height: 100%;
-    width: 0; /* Скрыто по умолчанию */
+    width: 0; 
     position: fixed;
-    z-index: 2000; /* Очень высокий z-index */
+    z-index: 2000; 
     top: 0;
     left: 0;
     background-color: #1a1a33;
@@ -475,7 +481,7 @@ body.progress-mode #back-to-top:hover {
 }
 
 .sidebar.open {
-    width: 250px; /* Открытая ширина */
+    width: 250px; 
 }
 
 .sidebar .close-btn {
@@ -512,7 +518,7 @@ body.progress-mode #back-to-top:hover {
 
 .sidebar-button {
     background: #2a2a44;
-    border: 2px solid #c000ff; /* Фиолетовая обводка по умолчанию */
+    border: 2px solid #c000ff; 
     color: #e0e0e0;
     padding: 12px 15px;
     text-align: left;
@@ -549,7 +555,7 @@ body.progress-mode #back-to-top:hover {
 }
 
 .update-entry h3 {
-    color: #ffcc00; /* Золотой заголовок */
+    color: #ffcc00; 
     margin-top: 0;
     font-size: 1.3em;
     text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
@@ -571,7 +577,7 @@ body.progress-mode #back-to-top:hover {
 }
 
 .tab-content.news {
-    max-width: 800px; /* Ограничиваем ширину для лучшей читаемости */
+    max-width: 800px; 
     margin-left: auto;
     margin-right: auto;
 }
@@ -582,7 +588,7 @@ body.progress-mode #back-to-top:hover {
         font-size: 1.8em;
     }
     nav {
-        top: 80px; /* Уменьшаем отступ для навигации */
+        top: 80px; 
     }
     nav .tab-button {
         font-size: 0.9em;
@@ -590,11 +596,11 @@ body.progress-mode #back-to-top:hover {
         margin: 0 5px;
     }
     main {
-        margin-top: 130px; /* Уменьшаем отступ для основного контента */
+        margin-top: 130px; 
         padding: 0 10px;
     }
     .card {
-        padding-bottom: 60%; /* Увеличиваем высоту карточек на мобильных */
+        padding-bottom: 60%; 
     }
     .card h2 {
         font-size: 1.2em;
@@ -604,7 +610,7 @@ body.progress-mode #back-to-top:hover {
         padding: 20px;
     }
     .sidebar.open {
-        width: 100%; /* На мобильных на весь экран */
+        width: 100%; 
     }
 }
 
@@ -613,7 +619,7 @@ body.progress-mode #back-to-top:hover {
         padding: 10px;
     }
     nav {
-        flex-wrap: wrap; /* Перенос кнопок на новую строку */
+        flex-wrap: wrap; 
         justify-content: center;
         padding: 5px 0;
     }
@@ -625,9 +631,9 @@ body.progress-mode #back-to-top:hover {
       left: 15px;
     }
     body {
-        padding-top: 70px; /* Меньше отступ */
+        padding-top: 70px; 
     }
     main {
-        margin-top: 120px; /* Меньше отступ */
+        margin-top: 120px; 
     }
 }
