@@ -211,9 +211,9 @@ main {
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
-/* Свечение для Топ 1, 2, 3 (Demon List) */
+/* Свечение для Топ 1, 2, 3 (Demon List) - Фиолетовое по умолчанию */
 .card.top1 {
-    box-shadow: 0 0 15px #c000ff, 0 0 25px #c000ff; /* Фиолетовое свечение */
+    box-shadow: 0 0 15px #c000ff, 0 0 25px #c000ff;
 }
 .card.top2 {
     box-shadow: 0 0 12px #c000ff, 0 0 20px #c000ff;
@@ -222,9 +222,9 @@ main {
     box-shadow: 0 0 10px #c000ff, 0 0 15px #c000ff;
 }
 
-/* Свечение для Топ 1, 2, 3 (Impossible List) */
+/* Свечение для Топ 1, 2, 3 (Impossible List) - Переопределяем на Красное */
 body.impossible-mode .card.top1 {
-    box-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000; /* Красное свечение */
+    box-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000; 
 }
 body.impossible-mode .card.top2 {
     box-shadow: 0 0 12px #ff0000, 0 0 20px #ff0000;
