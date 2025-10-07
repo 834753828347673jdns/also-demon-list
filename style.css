@@ -21,7 +21,7 @@ body.progress-mode {
 header {
     background-color: #1a1a33; /* Более темный фон для хедера */
     color: #fff;
-    padding: 10px 20px; /* ИЗМЕНЕНО: уменьшен вертикальный отступ */
+    padding: 10px 20px 5px 20px; /* ИЗМЕНЕНО: уменьшен вертикальный отступ */
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     position: fixed;
@@ -29,7 +29,7 @@ header {
     top: 0;
     left: 0;
     z-index: 1000;
-    box-sizing: border-box; /* Учитываем padding в ширине */
+    box-sizing: border-box; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,10 +38,11 @@ header {
 header h1 {
     margin: 0;
     font-size: 2.5em;
-    text-shadow: 0 0 15px #c000ff, 0 0 25px #c000ff; /* Фиолетовое свечение */
-    animation: glow 1.5s ease-in-out infinite alternate;
+    /* УДАЛЕНО: тут было свечение, теперь оно в анимации */
+    animation: glow 1.5s ease-in-out infinite alternate; /* ВОССТАНОВЛЕНА анимация */
 }
 
+/* 💥 ВОССТАНОВЛЕНА АНИМАЦИЯ ПУЛЬСАЦИИ (GLOW) 💥 */
 @keyframes glow {
     from {
         text-shadow: 0 0 10px #c000ff, 0 0 20px #c000ff;
@@ -53,7 +54,7 @@ header h1 {
 
 /* Свечение для Impossible List */
 body.impossible-mode header h1 {
-    text-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000; /* Красное свечение */
+    /* text-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000;  (теперь в анимации)*/
     animation: glow-imp 1.5s ease-in-out infinite alternate;
 }
 @keyframes glow-imp {
@@ -67,7 +68,7 @@ body.impossible-mode header h1 {
 
 /* Свечение для In Progress */
 body.progress-mode header h1 {
-    text-shadow: 0 0 15px #b0b0b0, 0 0 25px #b0b0b0; /* Серое свечение */
+    /* text-shadow: 0 0 15px #b0b0b0, 0 0 25px #b0b0b0; (теперь в анимации) */
     animation: glow-prog 1.5s ease-in-out infinite alternate;
 }
 @keyframes glow-prog {
@@ -98,7 +99,7 @@ nav {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     position: fixed;
     width: 100%;
-    top: 85px; /* ИЗМЕНЕНО: подъем навигации, чтобы она не закрывалась хедером */
+    top: 75px; /* ИЗМЕНЕНО: подъем навигации, чтобы она не закрывалась хедером */
     left: 0;
     z-index: 999;
     box-sizing: border-box;
@@ -146,7 +147,7 @@ body.progress-mode nav .tab-button.active {
 /* --- Основной контент (карточки) --- */
 main {
     max-width: 1200px;
-    margin: 160px auto 20px auto; /* ИЗМЕНЕНО: отступ сверху для хедера и навигации */
+    margin: 150px auto 20px auto; /* ИЗМЕНЕНО: уменьшен отступ, чтобы поднять контент */
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -390,8 +391,8 @@ body.progress-mode .modal-content h2 {
 /* --- Футер --- */
 footer {
     text-align: center;
-    padding: 25px 20px; /* ИЗМЕНЕНО: увеличен вертикальный отступ */
-    background-color: #1a1a33;
+    padding: 25px 20px; 
+    background-color: #1a1a33; /* ИЗМЕНЕНО: цвет футера как у хедера */
     color: #a0a0a0;
     margin-top: 30px;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
