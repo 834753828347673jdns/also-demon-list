@@ -1,205 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALSO GDPS Demon List</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-
-<style>
-body {
-  margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  background: radial-gradient(circle at top, #0a0014, #0a0014 40%, #040008 100%);
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
-}
-
-h1 {
-  color: #b38bff;
-  text-shadow: 0 0 15px #a854ff;
-  margin-top: 30px;
-  font-size: 2em;
-}
-
-.subtitle {
-  margin-bottom: 30px;
-  color: #888;
-}
-
-nav {
-  margin-bottom: 30px;
-}
-
-nav button {
-  background: #1a0033;
-  color: #b38bff;
-  border: 1px solid #5200a3;
-  border-radius: 10px;
-  padding: 10px 20px;
-  font-family: 'Orbitron', sans-serif;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin: 0 5px;
-}
-
-nav button:hover, nav button.active {
-  background: #5200a3;
-  color: #fff;
-  box-shadow: 0 0 15px #a854ff;
-}
-
-.list {
-  display: none;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 0 20px;
-}
-
-.list.active {
-  display: flex;
-}
-
-.card {
-  background: #150022;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(128,0,255,0.3);
-  overflow: hidden;
-  width: 240px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.card img {
-  width: 100%;
-  display: block;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(170, 0, 255, 0.6);
-}
-
-.card p {
-  margin: 10px 0;
-  font-size: 0.9em;
-}
-
-.glow-1 {
-  box-shadow: 0 0 25px #ffd700;
-}
-.glow-2 {
-  box-shadow: 0 0 25px #c0c0c0;
-}
-.glow-3 {
-  box-shadow: 0 0 25px #cd7f32;
-}
-
-footer {
-  margin-top: 50px;
-  padding: 20px;
-  font-size: 0.9em;
-  color: #555;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALSO GDPS Demon List</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  
+  <div id="sidebar" class="sidebar">
+    <button class="close-btn" id="close-sidebar">&times;</button>
+    <div class="sidebar-content">
+        <h3 class="menu-title">Menu</h3>
+        <button class="tab-button sidebar-button" data-tab="news">
+            <span class="highlight-icon">📰</span> News
+        </button>
+        
+        <a href="https://www.tiktok.com/@kosmos_official.com" target="_blank" style="text-decoration:none;">
+            <button class="sidebar-button" style="border-color:#ffcc00;">
+                <span class="highlight-icon">🎵</span> KosmosTT TikTok
+            </button>
+        </a>
+        <a href="https://t.me/KosmosTGCAlsoGDPS" target="_blank" style="text-decoration:none;">
+            <button class="sidebar-button" style="border-color:#ffcc00;">
+                <span class="highlight-icon">⭐</span> KosmosTT Telegram
+            </button>
+        </a>
+    </div>
+  </div>
 
-<h1>ALSO GDPS Demon List</h1>
-<p class="subtitle">Created by <span style="color:#b38bff">KosmosTT</span> • Designed by <span style="color:#b38bff">PERFARATARRRRRR</span></p>
+  <header>
+    <h1>ALSO GDPS Demon List</h1>
+    <p class="author">Created by <span class="highlight">KosmosTT</span> • Designed by <span class="highlight">PERFARATARRRRRR</span></p>
+    
+    <button class="hamburger" id="open-sidebar">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
+  </header>
 
-<nav>
-  <button class="active" onclick="showList('demon')">Demon List</button>
-  <button onclick="showList('impossible')">Impossible List</button>
-  <button onclick="showList('progress')">In Progress</button>
-</nav>
+  <nav>
+    <button class="tab-button active" data-tab="demon-list">Demon List</button>
+    <button class="tab-button" data-tab="impossible">Impossible List</button>
+    <button class="tab-button" data-tab="in-progress">In Progress / Unverified</button>
+  </nav>
 
-<!-- DEMON LIST -->
-<div id="demon" class="list active">
-  <div class="card glow-1" onclick="showInfo('SCITZOPHRENIA', 312, 'MWMWM', '2:15 (XL)', 'Из-за бага длится 26 секунд')">
-    <img src="scitzophrenia.png" alt="SCITZOPHRENIA">
-    <p>#1 SCITZOPHRENIA</p>
-  </div>
-  <div class="card glow-2" onclick="showInfo('SEEK & DESTROY', 254, 'PERFARATARRRRRR', '3:19 (XL)')">
-    <img src="seek_destroy.png" alt="SEEK & DESTROY">
-    <p>#2 SEEK & DESTROY</p>
-  </div>
-  <div class="card glow-3" onclick="showInfo('ACFACTORY', 211, 'EvenTencid', '1:00 (Long)')">
-    <img src="acfactory.png" alt="ACFACTORY">
-    <p>#3 ACFACTORY</p>
-  </div>
-  <div class="card" onclick="showInfo('MAYMORY', 147, 'KosmosTT', '0:36 (Medium)')">
-    <img src="maymory.png" alt="MAYMORY">
-    <p>#4 MAYMORY</p>
-  </div>
-  <div class="card" onclick="showInfo('BLOODBATH', 279, 'kirill0gd', '1:39 (Long)')">
-    <img src="bloodbath.png" alt="BLOODBATH">
-    <p>#5 BLOODBATH</p>
-  </div>
-  <div class="card" onclick="showInfo('LAVA BOUNCE', 168, 'KosmosTT', '0:33 (Medium)')">
-    <img src="lava_bounce.png" alt="LAVA BOUNCE">
-    <p>#6 LAVA BOUNCE</p>
-  </div>
-</div>
+  <main class="tab-content demon-list active">
+    <div class="card top1" data-id="312" data-author="MWMWM" data-length="26 s (actual), bugged → 2:15 (XL)" data-title="SCITZOPHRENIA">
+      <img src="scitzophrenia.jpg" alt="SCITZOPHRENIA" />
+      <div class="info"><h2>#1 SCITZOPHRENIA</h2></div>
+    </div>
 
-<!-- IMPOSSIBLE LIST -->
-<div id="impossible" class="list">
-  <div class="card" onclick="showInfo('close the window', 999, 'KosmosTT', '2:00 (XL)')">
-    <img src="closewindow.png" alt="close the window">
-    <p>#1 close the window</p>
-  </div>
-  <div class="card" onclick="showInfo('Sakupen Circles', 888, 'KosmosTT', '1:50 (Long)')">
-    <img src="sakupen.png" alt="Sakupen Circles">
-    <p>#2 Sakupen Circles</p>
-  </div>
-  <div class="card" onclick="showInfo('soakel', 777, 'PERFARATARRRRRR', '1:20 (Long)')">
-    <img src="soakel.png" alt="soakel">
-    <p>#3 soakel</p>
-  </div>
-</div>
+    <div class="card top2" data-id="254" data-author="PERFARATARRRRRR" data-length="3:19 (XL)" data-title="SEEK & DESTROY">
+      <img src="seek_and_destroy.jpg" alt="SEEK & DESTROY" />
+      <div class="info"><h2>#2 SEEK & DESTROY</h2></div>
+    </div>
 
-<!-- IN PROGRESS LIST -->
-<div id="progress" class="list">
-  <div class="card" onclick="showInfo('LITHIUM (In Progress)', 0, 'KosmosTT', '-')">
-    <img src="lithium.png" alt="LITHIUM">
-    <p>LITHIUM (In Progress)</p>
-  </div>
-  <div class="card" onclick="showInfo('ALSO ANATHEMA (In Progress)', 0, 'PERFARATARRRRRR', '-')">
-    <img src="anathem.png" alt="ALSO ANATHEMA">
-    <p>ALSO ANATHEMA (In Progress)</p>
-  </div>
-  <div class="card" onclick="showInfo('DEPRESSION (In Progress)', 0, 'KosmosTT', '-')">
-    <img src="depression.png" alt="DEPRESSION">
-    <p>DEPRESSION (In Progress)</p>
-  </div>
-  <div class="card" onclick="showInfo('XREN SHAFT (In Progress)', 0, 'KosmosTT', '-')">
-    <img src="xrenshaft.png" alt="XREN SHAFT">
-    <p>XREN SHAFT (In Progress)</p>
-  </div>
-</div>
+    <div class="card top3" data-id="211" data-author="EvenTencid" data-length="1:00 (Long)" data-title="ACFACTORY">
+      <img src="acfactory.jpg" alt="ACFACTORY" />
+      <div class="info"><h2>#3 ACFACTORY</h2></div>
+    </div>
 
-<footer>© 2025 ALSO GDPS • Created by KosmosTT • Designed by PERFARATARRRRRR</footer>
+    <div class="card" data-id="147" data-author="KosmosTT" data-length="0:36 (Medium)" data-title="MAYMORY">
+      <img src="maymory.jpg" alt="MAYMORY" />
+      <div class="info"><h2>#4 MAYMORY</h2></div>
+    </div>
 
-<script>
-function showList(list) {
-  document.querySelectorAll('.list').forEach(l => l.classList.remove('active'));
-  document.getElementById(list).classList.add('active');
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-}
+    <div class="card" data-id="279" data-author="kirill0gd" data-length="1:39 (Long)" data-title="BLOODBATH">
+      <img src="bloodbath.jpg" alt="BLOODBATH" />
+      <div class="info"><h2>#5 BLOODBATH</h2></div>
+    </div>
 
-function showInfo(name, id, author, length, note = '') {
-  alert(
-    name + "\\n" +
-    "ID: " + id + "\\n" +
-    "Author: " + author + "\\n" +
-    "Length: " + length + (note ? "\\n" + note : "")
-  );
-}
-</script>
+    <div class="card" data-id="168" data-author="KosmosTT" data-length="0:33 (Medium)" data-title="LAVA BOUNCE">
+      <img src="lava_bounce.jpg" alt="LAVA BOUNCE" />
+      <div class="info"><h2>#6 LAVA BOUNCE</h2></div>
+    </div>
+  </main>
 
+  <main class="tab-content in-progress">
+    
+    <div class="card" data-id="—" data-author="PERFARATARRRRRR" data-length="Unknown" data-title="LITHIUM">
+      <img src="lithium.jpg" alt="LITHIUM" />
+      <div class="info"><h2>LITHIUM (In Progress)</h2></div>
+    </div>
+
+    <div class="card" data-id="—" data-author="Burda5800gd" data-length="1:07 (Long)" data-title="ALSO ANATHEMA">
+      <img src="also anathema.jpg" alt="ALSO ANATHEMA" />
+      <div class="info"><h2>ALSO ANATHEMA (In Progress)</h2></div>
+    </div>
+    
+    <div class="card" data-id="—" data-author="Vasekk Hardy" data-length="Unknown" data-title="DEPRESSION">
+      <img src="depression.jpg" alt="DEPRESSION" />
+      <div class="info"><h2>DEPRESSION (In Progress)</h2></div>
+    </div>
+
+    <div class="card" data-id="—" data-author="Depperens" data-length="Unknown" data-title="XPEH 3HAET">
+      <img src="xpeh3haet.jpg" alt="XPEH 3HAET" />
+      <div class="info"><h2>XPEH 3HAET (In Progress)</h2></div>
+    </div>
+    
+  </main>
+
+  <main class="tab-content impossible">
+  <div class="card top1" data-id="346" data-author="PERFARATARRRRRR" data-length="0:25 (Short)" data-title="WTH">
+      <img src="wth.jpg" alt="WTH" />
+      <div class="info"><h2>#1 WTH</h2></div>
+    </div>
+
+    <div class="card top2" data-id="212" data-author="(SPACE) GUESTLOLSLAYER" data-length="0:44 (Medium)" data-title="CLOSE THE WINDOW">
+      <img src="closethewindow.jpg" alt="CLOSE THE WINDOW" />
+      <div class="info"><h2>#2 CLOSE THE WINDOW</h2></div>
+    </div>
+
+    <div class="card top3" data-id="313" data-author="THEMIRON341" data-length="0:40 (Medium)" data-title="SILENT CIRCLES">
+      <img src="silentcircles.jpg" alt="SILENT CIRCLES" />
+      <div class="info"><h2>#3 SILENT CIRCLES</h2></div>
+    </div>
+
+    <div class="card" data-id="259" data-author="(CHERV) CHERVITEAM" data-length="0:20 (Short)" data-title="UOLOL">
+      <img src="uolol.jpg" alt="UOLOL" />
+      <div class="info"><h2>#4 UOLOL</h2></div>
+    </div>
+
+    <div class="card" data-id="262" data-author="(CHERV) CHERVITEAM" data-length="1:19 (Long)" data-title="VV GAMERAM 2">
+      <img src="v v gameram2.jpg" alt="VV GAMERAM 2" />
+      <div class="info"><h2>#5 VV GAMERAM 2</h2></div>
+    </div>
+
+    <div class="card" data-id="233" data-author="THEMIRON341" data-length="4:57 (XL)" data-title="T3ST 666">
+      <img src="t3st666.jpg" alt="T3ST 666" />
+      <div class="info"><h2>#6 T3ST 666</h2></div>
+    </div>
+  </main>
+
+  <main class="tab-content news">
+    <h2>News & Updates</h2>
+    <div class="update-entry">
+      <h3>[07.10.2025] Обновление функционала и навигации</h3>
+      <ul>
+        <li>Изменен порядок вкладок (`Impossible List` теперь перед `In Progress`).</li>
+        <li>Добавлен уровень XPEH 3HAET и остальные в `In Progress`.</li>
+        <li>Добавлен динамический цвет Гамбургер-меню (☰) в зависимости от режима, а также динамический glow для заголовка.</li>
+        <li>Добавлена кнопка "Back to Top" (Наверх) для удобства.</li>
+        <li>Добавлены ссылки на Telegram и TikTok KosmosTT в Sidebar.</li>
+      </ul>
+    </div>
+    <div class="update-entry soon">
+        <p>Больше новостей скоро...</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 ALSO GDPS • Created by KosmosTT • Designed by PERFARATARRRRRR</p>
+  </footer>
+
+  <button id="back-to-top" title="Go to top">↑</button>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="close">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p><strong>ID:</strong> <span id="modal-id"></span></p>
+      <button id="copy-btn">Copy ID</button>
+      <p><strong>Author:</strong> <span id="modal-author"></span></p>
+      <p><strong>Length:</strong> <span id="modal-length"></span></p>
+      
+      <p id="copied-msg">Copied!</p>
+    </div>
+  </div>
+
+  <script>
+    // --- Modal logic ---
+    const cards = document.querySelectorAll(".card");
+    const modal = document.getElementById("modal");
+    const closeBtn = document.getElementById("close");
+    const title = document.getElementById("modal-title");
+    const id = document.getElementById("modal-id");
+    const author = document.getElementById("modal-author");
+    const length = document.getElementById("modal-length");
+    const copyBtn = document.getElementById("copy-btn");
+    const copiedMsg = document.getElementById("copied-msg");
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        title.textContent = card.dataset.title;
+        let cardId = card.dataset.id;
+        
+        // Установка ID (меняем "—" на N/A)
+        id.textContent = (cardId === "—") ? "N/A (Unknown)" : cardId;
+        author.textContent = card.dataset.author;
+        length.textContent = card.dataset.length;
+        
+        // Логика кнопки Copy ID (не копируем, если ID не существует)
+        if (cardId === "—") {
+            copyBtn.style.opacity = '0.4';
+            copyBtn.style.cursor = 'default';
+        } else {
+            copyBtn.style.opacity = '1';
+            copyBtn.style.cursor = 'pointer';
+        }
+
+        modal.classList.add("show");
+      });
+    });
+
+    closeBtn.addEventListener("click", () => modal.classList.remove("show"));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("show");
+    });
+
+    copyBtn.addEventListener("click", () => {
+      if (id.textContent !== "N/A (Unknown)") {
+        navigator.clipboard.writeText(id.textContent);
+        copiedMsg.classList.add("visible");
+        setTimeout(() => copiedMsg.classList.remove("visible"), 1000);
+      }
+    });
+
+    // --- Back to Top Logic ---
+    const backToTopBtn = document.getElementById("back-to-top");
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+        backToTopBtn.style.display = "block";
+      } else {
+        backToTopBtn.style.display = "none";
+      }
+    }
+
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; 
+      document.documentElement.scrollTop = 0; 
+    });
+
+
+    // --- Tabs & Sidebar Logic (включая динамический гамбургер) ---
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const sidebarButtons = document.querySelectorAll(".sidebar-button");
+    const allButtons = [...tabButtons, ...sidebarButtons]; 
+    const tabs = document.querySelectorAll(".tab-content");
+    const body = document.body; 
+    const sidebar = document.getElementById("sidebar");
+    const openSidebarBtn = document.getElementById("open-sidebar");
+    const closeSidebarBtn = document.getElementById("close-sidebar");
+    const hamburgerBars = document.querySelectorAll(".hamburger .bar");
+    const mainTitle = document.querySelector('h1');
+
+    // Функция для обновления цвета гамбургера
+    function updateHamburgerColor(mode) {
+      let color = '#c000ff'; 
+      let shadow = '0 0 5px #c000ff';
+
+      if (mode === 'impossible') {
+        color = '#ff0000'; 
+        shadow = '0 0 5px #ff0000';
+        mainTitle.style.animationName = 'glow-imp';
+      } else if (mode === 'progress') {
+        color = '#b0b0b0';
+        shadow = '0 0 5px #b0b0b0';
+        mainTitle.style.animationName = 'glow-prog';
+      } else {
+        mainTitle.style.animationName = 'glow';
+      }
+
+      hamburgerBars.forEach(bar => {
+        bar.style.backgroundColor = color;
+        bar.style.boxShadow = shadow;
+      });
+    }
+
+    // Логика открытия/закрытия бокового меню
+    openSidebarBtn.addEventListener("click", () => {
+        sidebar.classList.add("open");
+    });
+    closeSidebarBtn.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+    });
+
+    // Логика переключения вкладок
+    allButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        
+        document.querySelectorAll('button.active').forEach(b => b.classList.remove("active"));
+        tabs.forEach(t => t.classList.remove("active"));
+        
+        btn.classList.add("active"); 
+        
+        let targetTab = btn.dataset.tab;
+        if (targetTab) {
+            document.querySelector(`.${targetTab}`).classList.add("active");
+        }
+
+
+        // Если нажали на кнопку в sidebar, закрываем его
+        if (btn.classList.contains("sidebar-button")) {
+             sidebar.classList.remove("open");
+             // Делаем активной кнопку "Demon List" на основной панели для чистоты
+             document.querySelector('.tab-button[data-tab="demon-list"]').classList.remove("active");
+        }
+
+
+        // 3. Динамическая смена фона 
+        body.classList.remove("impossible-mode", "progress-mode"); 
+
+        let currentMode = '';
+        if (targetTab === "impossible") {
+          body.classList.add("impossible-mode");
+          currentMode = 'impossible';
+        } else if (targetTab === "in-progress") {
+          body.classList.add("progress-mode");
+          currentMode = 'progress';
+        }
+        updateHamburgerColor(currentMode);
+      });
+    });
+
+    // Устанавливаем цвет гамбургера при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeTab = document.querySelector('.tab-button.active');
+      if (activeTab) {
+        let initialMode = '';
+        if (activeTab.dataset.tab === 'impossible') {
+          initialMode = 'impossible';
+        } else if (activeTab.dataset.tab === 'in-progress') {
+          initialMode = 'progress';
+        }
+        updateHamburgerColor(initialMode);
+      }
+    });
+
+  </script>
 </body>
 </html>
